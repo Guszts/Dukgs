@@ -16,12 +16,17 @@ export default function Payment() {
   const [paymentType, setPaymentType] = useState<PaymentStructure>("deposit_standard");
   const [businessEmail, setBusinessEmail] = useState("");
   const [businessName, setBusinessName] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const proposalId = getProposalId();
 
   const startCheckout = async (event: React.FormEvent) => {
     event.preventDefault();
+    if (!acceptedTerms) {
+      setError("You must accept the Terms, Privacy Policy, and Payment Policy before checkout.");
+      return;
+    }
     setLoading(true);
     setError("");
 
@@ -29,7 +34,7 @@ export default function Payment() {
       const response = await fetch("/api/create-deposit-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ proposal_id: proposalId, payment_type: paymentType, business_email: businessEmail, business_name: businessName }),
+        body: JSON.stringify({ proposal_id: proposalId, payment_type: paymentType, business_email: businessEmail, business_name: businessName, legal_accepted: acceptedTerms }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data?.error || "Checkout could not be created.");
@@ -65,6 +70,10 @@ export default function Payment() {
                 <p className="font-display text-sm uppercase tracking-wider text-brand-brown font-black">Proposal ID</p>
                 <p className="mt-2 break-all font-mono text-xs text-brand-brown/75">{proposalId}</p>
               </div>
+              <div className="bg-white rounded-[28px] border-[3px] border-brand-brown p-5">
+                <p className="font-display text-sm uppercase tracking-wider text-brand-brown font-black">Before checkout</p>
+                <p className="mt-2 text-sm text-brand-brown/75 font-semibold">Review payment terms, third-party cost rules, refund policy, and privacy handling before paying.</p>
+              </div>
             </div>
 
             <form onSubmit={startCheckout} className="lg:col-span-7 bg-cream border-[3px] border-brand-brown p-5 sm:p-8 rounded-[32px] shadow-[6px_6px_0px_rgba(45,30,24,1)] space-y-5">
@@ -73,30 +82,24 @@ export default function Payment() {
                 <h2 className="font-display text-2xl sm:text-3xl uppercase text-brand-brown font-black mt-2">Choose the first payment</h2>
               </div>
 
-              <label className={optionClass}>
-                <input type="radio" name="payment_type" checked={paymentType === "deposit_standard"} onChange={() => setPaymentType("deposit_standard")} className="mt-0.5 accent-brand-orange" />
-                <span><strong>Standard:</strong> $5,000 upfront deposit, $5,000 before launch.</span>
-              </label>
-              <label className={optionClass}>
-                <input type="radio" name="payment_type" checked={paymentType === "deposit_alternative"} onChange={() => setPaymentType("deposit_alternative")} className="mt-0.5 accent-brand-orange" />
-                <span><strong>Alternative:</strong> $4,000 upfront, $3,000 after design approval, $3,000 before launch.</span>
-              </label>
+              <label className={optionClass}><input type="radio" name="payment_type" checked={paymentType === "deposit_standard"} onChange={() => setPaymentType("deposit_standard")} className="mt-0.5 accent-brand-orange" /><span><strong>Standard:</strong> $5,000 upfront deposit, $5,000 before launch.</span></label>
+              <label className={optionClass}><input type="radio" name="payment_type" checked={paymentType === "deposit_alternative"} onChange={() => setPaymentType("deposit_alternative")} className="mt-0.5 accent-brand-orange" /><span><strong>Alternative:</strong> $4,000 upfront, $3,000 after design approval, $3,000 before launch.</span></label>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div><label className={labelClass}>Business Name</label><input className={inputClass} value={businessName} onChange={(e) => setBusinessName(e.target.value)} required placeholder="Business name" /></div>
                 <div><label className={labelClass}>Business Email</label><input className={inputClass} type="email" value={businessEmail} onChange={(e) => setBusinessEmail(e.target.value)} required placeholder="contact@example.com" /></div>
               </div>
 
-              <div className="bg-brand-yellow rounded-[28px] border-[3px] border-brand-brown p-5">
-                <p className="text-xs font-display uppercase tracking-wider font-black">First payment due now</p>
-                <p className="font-display text-5xl text-brand-brown font-black mt-2">{paymentType === "deposit_standard" ? "$5,000" : "$4,000"}</p>
-              </div>
+              <div className="bg-brand-yellow rounded-[28px] border-[3px] border-brand-brown p-5"><p className="text-xs font-display uppercase tracking-wider font-black">First payment due now</p><p className="font-display text-5xl text-brand-brown font-black mt-2">{paymentType === "deposit_standard" ? "$5,000" : "$4,000"}</p></div>
+
+              <label className={optionClass}>
+                <input type="checkbox" checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} required className="mt-0.5 accent-brand-orange" />
+                <span>I have read and accept the <Link href="/terms" className="underline">Terms</Link>, <Link href="/privacy" className="underline">Privacy Policy</Link>, and <Link href="/refunds" className="underline">Payment and Refund Policy</Link>.</span>
+              </label>
 
               {error && <div className="rounded-2xl border-[3px] border-brand-brown bg-white p-4 text-sm font-bold text-brand-brown">{error}</div>}
 
-              <button type="submit" disabled={loading} className="bubble-btn bg-brand-yellow hover:bg-brand-yellow-hover text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs sm:text-sm text-center w-full disabled:opacity-60">
-                {loading ? "Creating Checkout" : "Pay Project Deposit"}
-              </button>
+              <button type="submit" disabled={loading} className="bubble-btn bg-brand-yellow hover:bg-brand-yellow-hover text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs sm:text-sm text-center w-full disabled:opacity-60">{loading ? "Creating Checkout" : "Pay Project Deposit"}</button>
             </form>
           </div>
         </div>
