@@ -14,7 +14,7 @@ const packageBlocks = [
   {
     name: "Digital Presence Strategy",
     value: "US$3,000",
-    summary: "Before we design anything, we map the customer journey, page structure, menu hierarchy, conversion paths, trust signals, and local presence gaps.",
+    summary: "Before we design anything, we map the customer journey, page structure, menu hierarchy, conversion paths, trust signals, and local presence gaps through a written audit and onboarding form.",
     items: ["Current digital presence audit", "Website and mobile structure review", "Menu and offer hierarchy", "Reservation and order path review", "Social proof and local presence analysis", "Page map, CTA planning, and competitor reference review"],
   },
   {
@@ -90,12 +90,12 @@ const maintenanceBlocks = [
 ];
 
 const trustItems = [
+  ["No Calls Required", "The full buying path can happen asynchronously through written audit details, private proposal pages, checkout, onboarding forms, and email."],
   ["Secure Payments", "Payments are processed through Stripe. DILGS does not store full card numbers."],
   ["Clear Scope", "The $10,000 implementation covers one defined fixed-scope digital presence system."],
   ["No False Guarantees", "No guaranteed revenue, rankings, reservations, traffic, or customer volume claims."],
   ["Written Policies", "Terms, privacy, cookies, payment, refund, and third-party cost rules are available before checkout."],
-  ["Buyer Path", "Audit, qualification, proposal, deposit, onboarding, build, review, final payment, launch, and care are explained before purchase."],
-  ["Data Handling", "Lead, project, payment, and onboarding data is handled through server-side flows and protected database access."],
+  ["Written Buyer Path", "Audit, qualification, proposal, deposit, onboarding, build, review, final payment, launch, and care are handled through written steps."],
 ];
 
 function Marker() {
@@ -146,7 +146,7 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-[3px] border-brand-brown">
         <div className="bg-brand-purple text-white py-2 px-4 border-b-[3px] border-brand-brown">
           <div className="flex flex-col sm:flex-row justify-between items-center text-[10px] sm:text-xs font-display tracking-wider max-w-7xl mx-auto gap-1 sm:gap-4">
-            <div className="uppercase opacity-95">Free professional audit of your current website</div>
+            <div className="uppercase opacity-95">No calls required — written audit and async onboarding</div>
             <div className="hidden md:block uppercase font-bold text-brand-yellow">Normally valued at US$25,000+ when built with separate specialists</div>
             <div className="uppercase opacity-95 text-right">Fixed implementation for US$10,000</div>
           </div>
@@ -179,10 +179,10 @@ export default function Home() {
           <div className="bento-card p-6 sm:p-8 md:p-12 bg-white rounded-[34px] sm:rounded-[54px] border-[3px] border-brand-brown">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-8 space-y-6">
-                <div className="flex gap-3 items-center"><Marker /><span className="text-xs font-mono tracking-widest text-brand-brown/60 uppercase">GASTRONOMY DIGITAL PRESENCE SYSTEM</span></div>
-                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-brand-brown leading-[1.05] tracking-tight font-black">One Complete Digital Presence System for Premium Gastronomy Brands</h1>
+                <div className="flex gap-3 items-center"><Marker /><span className="text-xs font-mono tracking-widest text-brand-brown/60 uppercase">NO-CALL GASTRONOMY DIGITAL PRESENCE SYSTEM</span></div>
+                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-brand-brown leading-[1.05] tracking-tight font-black">One Complete Digital Presence System Without Sales Calls</h1>
                 <p className="text-brand-brown font-display text-lg sm:text-xl md:text-2xl leading-normal max-w-3xl">The $10,000 implementation gives you the complete system: strategy, premium website, menu structure, reservation and order flow, local presence, reviews, copywriting, tracking, automation, launch support, and 30-day post-launch care.</p>
-                <p className="text-brand-brown/70 text-sm sm:text-base max-w-2xl leading-relaxed">A full buildout like this can easily require multiple specialists across strategy, design, copy, development, local presence, tracking, and support. DILGS packages the full implementation into one fixed-scope system.</p>
+                <p className="text-brand-brown/70 text-sm sm:text-base max-w-2xl leading-relaxed">No discovery calls, no mandatory meetings, and no live sales process. The audit, proposal, payment, onboarding, material collection, review, and handoff can be handled through forms, email, and private pages.</p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <Link href="/audit" className="bubble-btn bg-brand-yellow hover:bg-brand-yellow-hover text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs sm:text-sm text-center">Get Free Audit</Link>
                   <a href="#value-stack" className="bubble-btn bg-white hover:bg-cream-dark text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs sm:text-sm text-center">View Value Stack</a>
@@ -191,14 +191,14 @@ export default function Home() {
               <div className="lg:col-span-4">
                 <div className="relative bg-cream rounded-[36px] border-[3px] border-brand-brown p-5 shadow-[8px_8px_0px_rgba(45,30,24,1)] rotate-1">
                   <div className="bg-brand-yellow rounded-[28px] border-[3px] border-brand-brown p-6 -rotate-2">
-                    <p className="font-mono text-[10px] tracking-widest uppercase text-brand-brown/70 font-black">Fixed Implementation</p>
+                    <p className="font-mono text-[10px] tracking-widest uppercase text-brand-brown/70 font-black">Async Implementation</p>
                     <p className="font-display text-5xl sm:text-6xl text-brand-brown font-black mt-2">US$10K</p>
-                    <p className="font-display text-sm uppercase tracking-wider text-brand-brown font-black mt-2">Normally valued at US$25,000+</p>
+                    <p className="font-display text-sm uppercase tracking-wider text-brand-brown font-black mt-2">No calls required</p>
                   </div>
                   <div className="grid grid-cols-2 gap-3 mt-4">
                     <div className="bg-white rounded-2xl border-2 border-brand-brown p-4"><p className="font-display text-xl font-black">US$5K</p><p className="text-[11px] font-bold uppercase">Upfront</p></div>
                     <div className="bg-white rounded-2xl border-2 border-brand-brown p-4"><p className="font-display text-xl font-black">US$5K</p><p className="text-[11px] font-bold uppercase">Launch</p></div>
-                    <div className="col-span-2 bg-brand-brown rounded-2xl border-2 border-brand-brown p-4"><p className="font-display text-xl text-cream font-black">30 Days</p><p className="text-[11px] text-cream/80 font-bold uppercase">After onboarding materials are received</p></div>
+                    <div className="col-span-2 bg-brand-brown rounded-2xl border-2 border-brand-brown p-4"><p className="font-display text-xl text-cream font-black">Written Flow</p><p className="text-[11px] text-cream/80 font-bold uppercase">Audit, proposal, onboarding, review, and handoff</p></div>
                   </div>
                 </div>
               </div>
@@ -208,13 +208,13 @@ export default function Home() {
 
         <Shell id="offer" cream>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7"><SectionTitle eyebrow="OFFER" title="Gastronomy Digital Presence System" text="Instead of hiring separate specialists for website design, copywriting, tracking, local presence, menu structure, and launch support, DILGS delivers the full system under one fixed implementation." /></div>
+            <div className="lg:col-span-7"><SectionTitle eyebrow="OFFER" title="Gastronomy Digital Presence System" text="Instead of hiring separate specialists for website design, copywriting, tracking, local presence, menu structure, and launch support, DILGS delivers the full system under one fixed implementation. The process is designed to be completed without mandatory calls." /></div>
             <div className="lg:col-span-5 bg-white rounded-[32px] border-[3px] border-brand-brown p-6 shadow-[6px_6px_0px_rgba(45,30,24,1)]">
               <div className="grid gap-4">
                 <div><p className="text-xs font-mono uppercase tracking-widest text-brand-orange font-black">Product</p><p className="font-display text-2xl font-black uppercase">Gastronomy Digital Presence System</p></div>
                 <div><p className="text-xs font-mono uppercase tracking-widest text-brand-orange font-black">Price</p><p className="font-display text-4xl font-black">US$10,000</p></div>
                 <div><p className="text-xs font-mono uppercase tracking-widest text-brand-orange font-black">Payment</p><p className="font-bold">US$5,000 upfront. US$5,000 before launch.</p></div>
-                <div><p className="text-xs font-mono uppercase tracking-widest text-brand-orange font-black">Recommended Care</p><p className="font-bold">Growth Care — US$750/month</p></div>
+                <div><p className="text-xs font-mono uppercase tracking-widest text-brand-orange font-black">Communication</p><p className="font-bold">Async forms, email, private proposal pages, and written approvals.</p></div>
               </div>
             </div>
           </div>
@@ -223,14 +223,8 @@ export default function Home() {
         <Shell id="value-stack">
           <SectionTitle eyebrow="VALUE STACK" title="Normally valued at US$25,000+, fixed implementation for US$10,000" text="The detailed internal buildout benchmark totals US$43,500 across strategy, website, copywriting, tracking, automation, launch, and care. The public offer is positioned more conservatively as a US$25,000+ buildout packaged into one fixed implementation." />
           <div className="mt-8 overflow-hidden rounded-[28px] border-[3px] border-brand-brown">
-            <div className="grid grid-cols-[1fr_auto] bg-brand-brown text-cream font-display text-xs uppercase tracking-wider font-black">
-              <div className="p-4">Block</div><div className="p-4 text-right">Benchmark</div>
-            </div>
-            {packageBlocks.map((block) => (
-              <div key={block.name} className="grid grid-cols-[1fr_auto] border-t-[3px] border-brand-brown bg-white">
-                <div className="p-4 font-bold text-brand-brown">{block.name}</div><div className="p-4 text-right font-display font-black text-brand-brown">{block.value}</div>
-              </div>
-            ))}
+            <div className="grid grid-cols-[1fr_auto] bg-brand-brown text-cream font-display text-xs uppercase tracking-wider font-black"><div className="p-4">Block</div><div className="p-4 text-right">Benchmark</div></div>
+            {packageBlocks.map((block) => <div key={block.name} className="grid grid-cols-[1fr_auto] border-t-[3px] border-brand-brown bg-white"><div className="p-4 font-bold text-brand-brown">{block.name}</div><div className="p-4 text-right font-display font-black text-brand-brown">{block.value}</div></div>)}
             <div className="grid grid-cols-[1fr_auto] border-t-[3px] border-brand-brown bg-cream-dark"><div className="p-4 font-display uppercase font-black">Internal Buildout Benchmark</div><div className="p-4 text-right font-display font-black">US$43,500</div></div>
             <div className="grid grid-cols-[1fr_auto] border-t-[3px] border-brand-brown bg-brand-yellow"><div className="p-4 font-display uppercase font-black">Fixed Implementation</div><div className="p-4 text-right font-display font-black">US$10,000</div></div>
           </div>
@@ -242,27 +236,24 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
             {packageBlocks.map((block, index) => (
               <div key={block.name} className="bg-white rounded-[30px] border-[3px] border-brand-brown p-5 sm:p-6 shadow-[6px_6px_0px_rgba(45,30,24,1)]">
-                <div className="flex items-start justify-between gap-5">
-                  <div><p className="text-xs font-mono uppercase tracking-widest text-brand-orange font-black">Block {index + 1}</p><h3 className="font-display text-xl sm:text-2xl uppercase text-brand-brown font-black mt-2">{block.name}</h3></div>
-                  <div className="shrink-0 rounded-full bg-brand-yellow border-2 border-brand-brown px-4 py-2 font-display text-xs font-black">{block.value}</div>
-                </div>
+                <div className="flex items-start justify-between gap-5"><div><p className="text-xs font-mono uppercase tracking-widest text-brand-orange font-black">Block {index + 1}</p><h3 className="font-display text-xl sm:text-2xl uppercase text-brand-brown font-black mt-2">{block.name}</h3></div><div className="shrink-0 rounded-full bg-brand-yellow border-2 border-brand-brown px-4 py-2 font-display text-xs font-black">{block.value}</div></div>
                 <p className="mt-4 text-sm text-brand-brown/75 leading-relaxed font-semibold">{block.summary}</p>
-                <ul className="mt-5 grid gap-2">
-                  {block.items.map((item) => <li key={item} className="bg-cream rounded-2xl border-2 border-brand-brown px-4 py-3 text-xs sm:text-sm font-bold text-brand-brown">{item}</li>)}
-                </ul>
+                <ul className="mt-5 grid gap-2">{block.items.map((item) => <li key={item} className="bg-cream rounded-2xl border-2 border-brand-brown px-4 py-3 text-xs sm:text-sm font-bold text-brand-brown">{item}</li>)}</ul>
               </div>
             ))}
           </div>
         </Shell>
 
         <Shell id="process">
-          <SectionTitle eyebrow="PROCESS" title="From audit to launch" text="Audit, qualification, proposal, deposit, onboarding, build, review, final payment, launch, and care are explained before purchase." />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">{[["01", "Audit", "Submit the free audit request and current website details."], ["02", "Proposal", "Qualified leads receive a private proposal and payment page."], ["03", "Onboarding", "After deposit, materials are collected for production."], ["04", "Launch", "After review and final payment, the system is launched and stabilized."]].map(([number, title, text]) => <Card key={number} title={`${number} ${title}`} text={text} />)}</div>
+          <SectionTitle eyebrow="NO-CALL PROCESS" title="From written audit to launch" text="No mandatory calls. The path is built around forms, email, private payment pages, onboarding documents, written approvals, and recorded handoff." />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+            {[["01", "Written Audit", "Submit the free audit form with your current website, business details, goals, and issues."], ["02", "Private Proposal", "Qualified leads receive a written scope, pricing, terms, and private deposit page."], ["03", "Form Onboarding", "After deposit, materials are collected through structured onboarding forms and file links."], ["04", "Written Review", "Feedback, final approval, final payment, launch, and handoff can be completed in writing."]].map(([number, title, text]) => <Card key={number} title={`${number} ${title}`} text={text} />)}
+          </div>
         </Shell>
 
         <Shell id="maintenance" cream>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-5"><SectionTitle eyebrow="MONTHLY CARE" title="Growth Care — US$750/month" text="After launch, Monthly Growth Care keeps the system updated, monitored, and improving. The recommended plan is Growth Care at US$750/month." /><div className="mt-6 bg-brand-yellow rounded-[28px] border-[3px] border-brand-brown p-5 shadow-[6px_6px_0px_rgba(45,30,24,1)]"><p className="font-display text-3xl font-black">US$2,250</p><p className="font-bold text-sm">Optional 3-month prepaid maintenance package.</p><p className="font-display text-xl font-black mt-3">US$12,250</p><p className="font-bold text-sm">Initial total with implementation and 3 months of Growth Care.</p></div></div>
+            <div className="lg:col-span-5"><SectionTitle eyebrow="MONTHLY CARE" title="Growth Care — US$750/month" text="After launch, Monthly Growth Care keeps the system updated, monitored, and improving. Care can be handled asynchronously through email, task notes, and monthly written summaries." /><div className="mt-6 bg-brand-yellow rounded-[28px] border-[3px] border-brand-brown p-5 shadow-[6px_6px_0px_rgba(45,30,24,1)]"><p className="font-display text-3xl font-black">US$2,250</p><p className="font-bold text-sm">Optional 3-month prepaid maintenance package.</p><p className="font-display text-xl font-black mt-3">US$12,250</p><p className="font-bold text-sm">Initial total with implementation and 3 months of Growth Care.</p></div></div>
             <div className="lg:col-span-7">
               <div className="overflow-hidden rounded-[28px] border-[3px] border-brand-brown">
                 <div className="grid grid-cols-[1fr_auto] bg-brand-brown text-cream font-display text-xs uppercase tracking-wider font-black"><div className="p-4">Monthly Block</div><div className="p-4 text-right">Benchmark</div></div>
@@ -276,24 +267,24 @@ export default function Home() {
         </Shell>
 
         <Shell id="trust">
-          <SectionTitle eyebrow="BUYER CONFIDENCE" title="Clear terms before payment" text="A high-ticket purchase needs visible payment rules, privacy policies, third-party cost notes, and realistic expectations." />
+          <SectionTitle eyebrow="BUYER CONFIDENCE" title="Clear written terms before payment" text="A high-ticket purchase does not need a mandatory meeting. It needs clear scope, written terms, payment rules, privacy policies, third-party cost notes, and realistic expectations." />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">{trustItems.map(([title, text]) => <Card key={title} title={title} text={text} />)}</div>
           <div className="flex flex-wrap gap-3 mt-8"><Link href="/terms" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Terms</Link><Link href="/privacy" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Privacy</Link><Link href="/cookies" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Cookies</Link><Link href="/refunds" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Refunds</Link></div>
         </Shell>
 
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <div className="bg-brand-yellow rounded-[34px] border-[3px] border-brand-brown p-6 sm:p-8 md:p-10 text-center shadow-[8px_8px_0px_rgba(45,30,24,1)]">
-            <span className="text-xs font-mono tracking-widest text-brand-brown/70 font-black uppercase">FREE AUDIT</span>
+            <span className="text-xs font-mono tracking-widest text-brand-brown/70 font-black uppercase">NO-CALL FREE AUDIT</span>
             <h2 className="font-display text-3xl sm:text-4xl text-brand-brown uppercase tracking-tight font-black mt-4 max-w-3xl mx-auto">Find the gaps before implementation</h2>
-            <p className="max-w-2xl mx-auto mt-4 text-brand-brown/75 text-sm sm:text-base leading-relaxed font-semibold">Submit your gastronomy business for review. Qualified businesses can receive a private proposal and deposit payment page.</p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-7"><Link href="/audit" className="bubble-btn bg-brand-brown text-white px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs text-center">Get Free Audit</Link><a href="#pricing" className="bubble-btn bg-white text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs text-center">View Pricing</a></div>
+            <p className="max-w-2xl mx-auto mt-4 text-brand-brown/75 text-sm sm:text-base leading-relaxed font-semibold">Submit your gastronomy business for written review. Qualified businesses can receive a private proposal and deposit payment page without a mandatory sales call.</p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-7"><Link href="/audit" className="bubble-btn bg-brand-brown text-white px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs text-center">Get Free Audit</Link><a href="#offer" className="bubble-btn bg-white text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs text-center">View Offer</a></div>
           </div>
         </section>
       </main>
 
       <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
         <div className="bg-white rounded-[32px] border-[3px] border-brand-brown p-6 sm:p-8 flex flex-col lg:flex-row justify-between gap-8">
-          <div><p className="font-display text-3xl text-brand-brown font-black">Dilgs<span className="text-brand-orange">.</span></p><p className="mt-2 text-sm text-brand-brown/65 font-semibold max-w-md">Premium digital presence systems for gastronomy businesses in the United States.</p><p className="mt-3 text-xs text-brand-brown/55 font-bold">Payments processed securely by Stripe. Full card numbers are not stored by DILGS.</p></div>
+          <div><p className="font-display text-3xl text-brand-brown font-black">Dilgs<span className="text-brand-orange">.</span></p><p className="mt-2 text-sm text-brand-brown/65 font-semibold max-w-md">Premium digital presence systems for gastronomy businesses in the United States. No calls required.</p><p className="mt-3 text-xs text-brand-brown/55 font-bold">Payments processed securely by Stripe. Full card numbers are not stored by DILGS.</p></div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-display uppercase tracking-wider font-black"><Link href="/terms">Terms</Link><Link href="/privacy">Privacy</Link><Link href="/cookies">Cookies</Link><Link href="/refunds">Refunds</Link></div>
         </div>
       </footer>
