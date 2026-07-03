@@ -1,5 +1,31 @@
 import { createElement } from "react";
+import { Route, Switch } from "wouter";
+import Home from "./pages/Home";
+import Audit from "./pages/Audit";
+import Payment from "./pages/Payment";
+import FinalPayment from "./pages/FinalPayment";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import Maintenance from "./pages/Maintenance";
+import Onboarding from "./pages/Onboarding";
+import AdminDashboard from "./pages/AdminDashboard";
+import NotFound from "./pages/NotFound";
+
+const h = createElement;
 
 export default function App() {
-  return createElement("div", { className: "min-h-screen bg-cream p-10" }, "DILGS");
+  return h(
+    Switch,
+    null,
+    h(Route, { path: "/", component: Home }),
+    h(Route, { path: "/audit", component: Audit }),
+    h(Route, { path: "/pay/:proposalId", component: Payment }),
+    h(Route, { path: "/deposit/:proposalId", component: Payment }),
+    h(Route, { path: "/final-payment/:projectId", component: FinalPayment }),
+    h(Route, { path: "/maintenance", component: Maintenance }),
+    h(Route, { path: "/onboarding/:clientId", component: Onboarding }),
+    h(Route, { path: "/success", component: PaymentSuccess }),
+    h(Route, { path: "/payment-success", component: PaymentSuccess }),
+    h(Route, { path: "/admin", component: AdminDashboard }),
+    h(Route, { component: NotFound })
+  );
 }
