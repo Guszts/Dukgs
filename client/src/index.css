@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:wght@300..800&family=Lilita+One&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Lilita One", "Fredoka", sans-serif;
+  --font-rounded: "Fredoka", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-cream: #FDFBF7;
+  --color-cream-dark: #F5EFEB;
+  --color-brand-brown: #2D1E18;
+  --color-brand-yellow: #FBE13F;
+  --color-brand-yellow-hover: #E3CA24;
+  --color-brand-orange: #FF7E47;
+  --color-brand-green: #37A867;
+  --color-brand-blue: #4FA9E3;
+  --color-brand-purple: #4C2F6E;
+}
+
+/* Custom Base Styles */
+body {
+  background-color: #ffffff;
+  color: var(--color-brand-brown);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Page Noise Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Rounded Cards - Bento Style */
+.bento-card {
+  border: 3px solid var(--color-brand-brown);
+  border-radius: 40px;
+  box-shadow: 0 10px 25px -5px rgba(45, 30, 24, 0.08), 0 8px 10px -6px rgba(45, 30, 24, 0.08);
+  background-color: white;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 30px -10px rgba(45, 30, 24, 0.15);
+}
+
+/* Pill/Bubble buttons */
+.bubble-btn {
+  font-family: var(--font-display);
+  border: 3px solid var(--color-brand-brown);
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px -1px rgba(45, 30, 24, 0.15);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 12px 28px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bubble-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(45, 30, 24, 0.2);
+}
+
+.bubble-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px -1px rgba(45, 30, 24, 0.1);
+}
+
+.bubble-btn--yellow {
+  background-color: var(--color-brand-yellow);
+  color: var(--color-brand-brown);
+}
+
+.bubble-btn--yellow:hover {
+  background-color: var(--color-brand-yellow-hover);
+}
+
+.bubble-btn--brown {
+  background-color: var(--color-brand-brown);
+  color: white;
+}
+
+.bubble-btn--brown:hover {
+  background-color: #1a0f0a;
+}
+
+.bubble-btn--outline {
+  background-color: transparent;
+  color: var(--color-brand-brown);
+}
+
+/* Pill Labels */
+.pill-label {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 2px solid;
+  font-family: var(--font-display);
+}
+
+.pill-label--yellow {
+  background-color: var(--color-brand-yellow);
+  border-color: var(--color-brand-brown);
+  color: var(--color-brand-brown);
+}
+
+.pill-label--orange {
+  background-color: var(--color-brand-orange);
+  border-color: var(--color-brand-brown);
+  color: white;
+}
+
+.pill-label--green {
+  background-color: var(--color-brand-green);
+  border-color: var(--color-brand-brown);
+  color: white;
+}
+
+.pill-label--blue {
+  background-color: var(--color-brand-blue);
+  border-color: var(--color-brand-brown);
+  color: white;
+}
+
+.pill-label--purple {
+  background-color: var(--color-brand-purple);
+  border-color: var(--color-brand-brown);
+  color: white;
+}
+
+/* Dark Ribbon Sections */
+.dark-ribbon {
+  background-color: var(--color-brand-brown);
+  color: white;
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dark-ribbon h2,
+.dark-ribbon h3 {
+  color: white;
+}
+
+/* Section Spacing */
+section {
+  padding: 80px 20px;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 60px 20px;
+  }
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--color-brand-brown);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  line-height: 1.2;
+}
+
+p {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-brand-brown);
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-brand-brown);
+  border-radius: 10px;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-cream {
+  color: var(--color-cream);
+}
+
+.bg-cream {
+  background-color: var(--color-cream);
+}
+
+.bg-cream-dark {
+  background-color: var(--color-cream-dark);
+}
+
+.text-brand-brown {
+  color: var(--color-brand-brown);
+}
+
+.bg-brand-brown {
+  background-color: var(--color-brand-brown);
+}
+
+.text-brand-yellow {
+  color: var(--color-brand-yellow);
+}
+
+.bg-brand-yellow {
+  background-color: var(--color-brand-yellow);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* Responsive Grid */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .grid-responsive {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Focus States for Accessibility */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 3px solid var(--color-brand-yellow);
+  outline-offset: 2px;
+}
+
+/* Smooth Transitions */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}

@@ -1,0 +1,122 @@
+CREATE TABLE `clients` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`name` varchar(255) NOT NULL,
+	`email` varchar(320) NOT NULL,
+	`phone` varchar(20),
+	`company` varchar(255),
+	`address` text,
+	`city` varchar(100),
+	`state` varchar(50),
+	`zipCode` varchar(20),
+	`country` varchar(100) DEFAULT 'Brazil',
+	`taxId` varchar(50),
+	`website` varchar(255),
+	`notes` text,
+	`isActive` boolean DEFAULT true,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `clients_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `leads` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`name` varchar(255) NOT NULL,
+	`email` varchar(320) NOT NULL,
+	`phone` varchar(20),
+	`company` varchar(255),
+	`message` text,
+	`budget` varchar(50),
+	`projectType` varchar(100),
+	`status` enum('new','contacted','qualified','lost') NOT NULL DEFAULT 'new',
+	`source` varchar(100) DEFAULT 'contact_form',
+	`notes` text,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `leads_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `maintenancePlans` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`projectId` int NOT NULL,
+	`name` varchar(255) NOT NULL,
+	`description` text,
+	`monthlyPrice` decimal(12,2) NOT NULL,
+	`stripePriceId` varchar(255),
+	`stripeSubscriptionId` varchar(255),
+	`status` enum('active','paused','cancelled') NOT NULL DEFAULT 'active',
+	`startDate` timestamp DEFAULT (now()),
+	`cancelDate` timestamp,
+	`features` json,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `maintenancePlans_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `payments` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`projectId` int NOT NULL,
+	`proposalId` int,
+	`clientId` int NOT NULL,
+	`amount` decimal(12,2) NOT NULL,
+	`currency` varchar(3) DEFAULT 'BRL',
+	`type` enum('deposit','final_payment','maintenance') NOT NULL,
+	`status` enum('pending','processing','completed','failed','refunded') NOT NULL DEFAULT 'pending',
+	`stripeSessionId` varchar(255),
+	`stripePaymentIntentId` varchar(255),
+	`stripeCustomerId` varchar(255),
+	`stripeSubscriptionId` varchar(255),
+	`paymentMethod` varchar(50),
+	`paidAt` timestamp,
+	`refundedAt` timestamp,
+	`refundReason` text,
+	`notes` text,
+	`metadata` json,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `payments_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `projects` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`clientId` int NOT NULL,
+	`proposalId` int,
+	`name` varchar(255) NOT NULL,
+	`description` text,
+	`url` varchar(255),
+	`status` enum('planning','design','development','testing','launched','maintenance') NOT NULL DEFAULT 'planning',
+	`paymentStatus` enum('pending','deposit_paid','in_progress','final_paid','completed') NOT NULL DEFAULT 'pending',
+	`startDate` timestamp,
+	`dueDate` timestamp,
+	`completionDate` timestamp,
+	`budget` decimal(12,2),
+	`depositPaid` boolean DEFAULT false,
+	`finalPaymentPaid` boolean DEFAULT false,
+	`maintenanceActive` boolean DEFAULT false,
+	`maintenancePlanId` varchar(255),
+	`notes` text,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `projects_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `proposals` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`clientId` int NOT NULL,
+	`title` varchar(255) NOT NULL,
+	`description` text,
+	`scope` text,
+	`deliverables` json,
+	`totalValue` decimal(12,2) NOT NULL,
+	`depositPercentage` int DEFAULT 50,
+	`depositValue` decimal(12,2) NOT NULL,
+	`finalPaymentValue` decimal(12,2) NOT NULL,
+	`timeline` varchar(100),
+	`status` enum('draft','sent','accepted','rejected','archived') NOT NULL DEFAULT 'draft',
+	`validUntil` timestamp,
+	`stripeDepositPriceId` varchar(255),
+	`stripeFinalPaymentPriceId` varchar(255),
+	`notes` text,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `proposals_id` PRIMARY KEY(`id`)
+);
