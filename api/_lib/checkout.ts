@@ -59,7 +59,7 @@ export async function createCheckout(req: any, res: any, input: CheckoutInput) {
       },
     ],
     success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${baseUrl}/cancelled`,
+    cancel_url: `${baseUrl}/audit`,
     metadata,
   });
 
