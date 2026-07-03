@@ -1,3 +1,5 @@
+import { createElement } from "react";
+
 export default function App() {
-  return null;
+  return createElement("div", { className: "min-h-screen bg-cream p-10" }, "DILGS");
 }
