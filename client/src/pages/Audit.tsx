@@ -78,7 +78,7 @@ export default function Audit() {
         <div className="bento-card max-w-xl p-8 sm:p-10 text-center rounded-[40px] border-[3px] border-brand-brown shadow-[8px_8px_0px_rgba(45,30,24,1)]">
           <span className="text-xs font-mono tracking-widest text-brand-orange font-black uppercase">REQUEST SAVED</span>
           <h1 className="mt-5 font-display text-4xl sm:text-5xl text-brand-brown uppercase font-black">Free Audit Request Received</h1>
-          <p className="mt-5 text-brand-brown/75 font-medium">Your request was saved. Qualified businesses can receive a private proposal and deposit page after review.</p>
+          <p className="mt-5 text-brand-brown/75 font-medium">Your request was saved. No call is required. Qualified businesses can receive a written private proposal and deposit page after review.</p>
           <p className="mt-5 rounded-2xl border-[3px] border-brand-brown bg-cream p-4 text-xs font-black text-brand-brown">{message}</p>
           <Link href="/" className="bubble-btn bg-brand-yellow hover:bg-brand-yellow-hover text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs text-center mt-8 inline-flex">Back to Home</Link>
         </div>
@@ -102,13 +102,13 @@ export default function Audit() {
                 <span className="w-2.5 h-7 bg-brand-orange/80 rounded-full rotate-12" />
                 <span className="w-2.5 h-8 bg-brand-orange rounded-full -rotate-12" />
                 <span className="w-2.5 h-7 bg-brand-orange/80 rounded-full rotate-6" />
-                <span className="text-xs font-mono tracking-widest text-brand-brown/60 uppercase ml-2">FREE AUDIT</span>
+                <span className="text-xs font-mono tracking-widest text-brand-brown/60 uppercase ml-2">NO-CALL FREE AUDIT</span>
               </div>
-              <h1 className="font-display text-4xl sm:text-5xl text-brand-brown uppercase leading-tight tracking-tight font-black">Request a DILGS Gastronomy Audit</h1>
-              <p className="text-brand-brown/75 font-medium leading-relaxed">Submit your business details. The request is saved server-side and reviewed before a private payment page is shared.</p>
+              <h1 className="font-display text-4xl sm:text-5xl text-brand-brown uppercase leading-tight tracking-tight font-black">Request a Written DILGS Gastronomy Audit</h1>
+              <p className="text-brand-brown/75 font-medium leading-relaxed">Submit your business details. The request is reviewed asynchronously before a private written proposal or payment page is shared.</p>
               <div className="bg-brand-yellow rounded-[28px] border-[3px] border-brand-brown p-5 shadow-[6px_6px_0px_rgba(45,30,24,1)]">
-                <p className="font-display text-sm uppercase tracking-wider text-brand-brown font-black">Qualification note</p>
-                <p className="mt-2 text-sm text-brand-brown/75 font-semibold">The implementation is $10,000 before monthly care.</p>
+                <p className="font-display text-sm uppercase tracking-wider text-brand-brown font-black">No Calls Required</p>
+                <p className="mt-2 text-sm text-brand-brown/75 font-semibold">Audit, proposal, payment, onboarding, review, and handoff can happen through forms, email, and private pages.</p>
               </div>
             </div>
 
@@ -133,12 +133,12 @@ export default function Audit() {
                 <label className={checkClass}><input type="checkbox" checked={form.needs_catering_inquiries} onChange={(e) => update("needs_catering_inquiries", e.target.checked)} className="mt-0.5 accent-brand-orange" />Needs catering inquiries</label>
               </div>
 
-              <label className={checkClass}><input type="checkbox" checked={form.budget_confirmed} onChange={(e) => update("budget_confirmed", e.target.checked)} required className="mt-0.5 accent-brand-orange" />I understand the implementation is $10,000 before monthly care.</label>
+              <label className={checkClass}><input type="checkbox" checked={form.budget_confirmed} onChange={(e) => update("budget_confirmed", e.target.checked)} required className="mt-0.5 accent-brand-orange" />I understand the implementation is $10,000 before monthly care and can be handled without a mandatory call.</label>
 
               {status === "error" && <div className="rounded-2xl border-[3px] border-brand-brown bg-white p-4 text-sm font-bold text-brand-brown">{message}</div>}
 
               <button type="submit" disabled={status === "loading"} className="bubble-btn bg-brand-yellow hover:bg-brand-yellow-hover text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs sm:text-sm text-center w-full disabled:opacity-60">
-                {status === "loading" ? "Saving Audit Request" : "Submit Free Audit Request"}
+                {status === "loading" ? "Saving Audit Request" : "Submit No-Call Audit Request"}
               </button>
             </form>
           </div>
