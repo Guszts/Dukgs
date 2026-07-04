@@ -74,7 +74,7 @@
 
 ## Deploy & GitHub
 - [ ] Configurar variáveis de ambiente na Vercel
-- [ ] Fazer push das alterações para Guszts/Dukgs
+- [ ] Fazer push das alterações para Guszts/Dilgs
 - [ ] Configurar deploy automático na Vercel
 - [ ] Testar funcionamento em produção
 - [ ] Configurar Stripe webhook em produção

@@ -1,10 +1,10 @@
-# Dukgs - Agência Digital Brutalista
+# Dilgs - Agência Digital Editorial
 
-Uma agência digital moderna com design brutalista, integração completa com Stripe para pagamentos e Supabase para banco de dados.
+Uma agência digital moderna com design editorial, integração completa com Stripe para pagamentos e Supabase para banco de dados.
 
 ## 🎨 Características
 
-- **Design Brutalista**: Tipografia pesada, bordas grossas, paleta preto/branco/amarelo
+- **Design Editorial**: Tipografia refinada, estrutura clara, paleta preto/branco/amarelo
 - **Landing Page Completa**: Hero, Serviços, Portfólio, Processo, FAQ e CTA
 - **Integração Stripe**: Checkout de depósito, pagamento final e assinatura de manutenção
 - **Banco de Dados**: Supabase com tabelas para leads, clientes, propostas, projetos e pagamentos
@@ -164,7 +164,7 @@ OWNER_NAME
 
 ## 📝 Checklist de Funcionalidades
 
-- [x] Design Brutalista
+- [x] Design Editorial
 - [x] Landing page com 6 seções
 - [x] Integração Stripe (depósito, pagamento final, manutenção)
 - [x] Banco de dados com 6 tabelas
@@ -187,9 +187,9 @@ MIT
 
 ## 📧 Contato
 
-- Email: contato@dukgs.com
-- Website: https://dukgs.com
+- Email: contato@dilgs.com
+- Website: https://dilgs.com
 
 ---
 
-Desenvolvido com ❤️ e design brutalista.
+Desenvolvido com ❤️ e design editorial.
