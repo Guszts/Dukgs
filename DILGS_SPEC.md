@@ -93,7 +93,7 @@
 - customer.subscription.deleted
 
 ## Design Reference
-Repository: https://github.com/Guszts/Portf-lio-filro-novo
+Repository: https://github.com/Guszts/Portf-lio-dilgs-novo
 
 ## Key Rules
 - No emojis
