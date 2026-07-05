@@ -7,7 +7,7 @@ A premium digital agency system with editorial design, complete **Stripe** integ
 - **Editorial Design**: Refined typography, clear structure, brutalist-inspired palette (Black/White/Yellow).
 - **High-Conversion Landing Page**: Hero, Services, Portfolio, Process, FAQ, and CTA sections.
 - **Stripe Integration**: Checkout for deposits, final payments, and monthly growth care subscriptions.
-- **Database Architecture**: Drizzle ORM (MySQL) with tables for leads, audit requests, proposals, clients, projects, and payments.
+- **Database Architecture**: Drizzle ORM (PostgreSQL/Supabase) with tables for leads, audit requests, proposals, clients, projects, and payments.
 - **Lead Capture System**: Contact form with validation and asynchronous routing.
 - **Admin Dashboard**: Protected dashboard to manage leads, projects, and business operations.
 - **Webhooks**: Automatic payment status updates and project lifecycle triggers.
@@ -17,7 +17,7 @@ A premium digital agency system with editorial design, complete **Stripe** integ
 
 - **Frontend**: React 19 + Tailwind CSS 4 + TypeScript + Wouter.
 - **Backend**: Express 4 + tRPC 11 + Node.js.
-- **Database**: MySQL (Compatible with TiDB, PlanetScale, or self-hosted MySQL) via Drizzle ORM.
+- **Database**: PostgreSQL (Compatible with Supabase, Neon, or self-hosted Postgres) via Drizzle ORM.
 - **Payments**: Stripe API.
 - **Authentication**: Manus OAuth.
 - **Testing**: Vitest.
@@ -27,7 +27,7 @@ A premium digital agency system with editorial design, complete **Stripe** integ
 - Node.js 22+
 - pnpm 10+
 - Stripe Account (for payments)
-- MySQL Database (e.g., TiDB Serverless or PlanetScale)
+- PostgreSQL Database (e.g., Supabase or Neon)
 
 ## 🛠️ Local Setup
 
@@ -43,7 +43,7 @@ Create a `.env.local` file:
 
 ```env
 # Database
-DATABASE_URL=mysql://user:password@host:3306/database
+DATABASE_URL=postgres://user:password@host:5432/database
 
 # Stripe
 STRIPE_SECRET_KEY=sk_test_...

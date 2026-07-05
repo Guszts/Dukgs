@@ -1,5 +1,6 @@
 import { eq, desc } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/mysql2";
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
 import { nanoid } from "nanoid";
 import { 
   users, 
@@ -23,7 +24,8 @@ let _db: ReturnType<typeof drizzle> | null = null;
 export async function getDb() {
   if (!_db && process.env.DATABASE_URL) {
     try {
-      _db = drizzle(process.env.DATABASE_URL);
+      const client = postgres(process.env.DATABASE_URL);
+      _db = drizzle(client);
     } catch (error) {
       console.warn("[Database] Failed to connect:", error);
       _db = null;
@@ -56,9 +58,9 @@ export async function upsertUser(user: Partial<User> & { openId: string }) {
         createdAt: new Date(),
         updatedAt: new Date(),
         lastSignedIn: new Date()
-      };
-      // @ts-ignore - drizzle-orm type mismatch on insert for some mysql versions
-      const result = await db.insert(users).values(newUser);
+      } as any;
+      
+      await db.insert(users).values(newUser);
       return newUser;
     }
   } catch (error) {
@@ -96,8 +98,8 @@ export async function createLead(data: Omit<Lead, "id" | "createdAt" | "updatedA
       status: data.status || 'new',
       createdAt: new Date(),
       updatedAt: new Date()
-    };
-    // @ts-ignore
+    } as any;
+    
     await db.insert(leads).values(newLead);
     return newLead;
   } catch (error) {

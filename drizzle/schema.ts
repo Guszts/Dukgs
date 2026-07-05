@@ -1,23 +1,33 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, decimal, boolean, json, date } from "drizzle-orm/mysql-core";
+import { pgTable, serial, text, varchar, timestamp, pgEnum, boolean, integer, decimal, jsonb, date } from "drizzle-orm/pg-core";
+
+// ============ ENUMS ============
+export const roleEnum = pgEnum("role", ["user", "admin"]);
+export const leadStatusEnum = pgEnum("lead_status", ["new", "reviewed", "qualified", "proposal_sent", "deposit_pending", "deposit_paid", "rejected", "archived"]);
+export const auditStatusEnum = pgEnum("audit_status", ["pending", "in_review", "completed", "sent"]);
+export const proposalStatusEnum = pgEnum("proposal_status", ["draft", "sent", "viewed", "deposit_pending", "accepted", "declined", "expired"]);
+export const clientStatusEnum = pgEnum("client_status", ["active", "onboarding_pending", "project_active", "maintenance_active", "inactive"]);
+export const projectStatusEnum = pgEnum("project_status", ["waiting_on_onboarding", "strategy", "design", "build", "review", "final_payment_pending", "launch_ready", "launched", "completed", "paused", "cancelled"]);
+export const paymentStatusEnum = pgEnum("payment_status", ["pending", "paid", "failed", "expired", "refunded"]);
+export const subscriptionStatusEnum = pgEnum("subscription_status", ["active", "trialing", "past_due", "canceled"]);
 
 // ============ USERS (for auth) ============
-export const users = mysqlTable("users", {
-  id: int("id").autoincrement().primaryKey(),
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
   openId: varchar("openId", { length: 64 }).notNull().unique(),
   name: text("name"),
   email: varchar("email", { length: 320 }),
   loginMethod: varchar("loginMethod", { length: 64 }),
-  role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
+  role: roleEnum("role").default("user").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
 });
 
 // ============ DILGS TABLES ============
-export const leads = mysqlTable("leads", {
+export const leads = pgTable("leads", {
   id: varchar("id", { length: 36 }).primaryKey(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
   name: text("name").notNull(),
   businessName: text("businessName"),
   businessEmail: varchar("businessEmail", { length: 320 }).notNull(),
@@ -33,25 +43,25 @@ export const leads = mysqlTable("leads", {
   timeline: varchar("timeline", { length: 100 }),
   budgetConfirmed: boolean("budgetConfirmed").default(false),
   source: varchar("source", { length: 100 }),
-  status: mysqlEnum("status", ["new", "reviewed", "qualified", "proposal_sent", "deposit_pending", "deposit_paid", "rejected", "archived"]).default("new"),
+  status: leadStatusEnum("status").default("new"),
 });
 
-export const auditRequests = mysqlTable("auditRequests", {
+export const auditRequests = pgTable("auditRequests", {
   id: varchar("id", { length: 36 }).primaryKey(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   leadId: varchar("leadId", { length: 36 }).notNull(),
   websiteUrl: text("websiteUrl"),
   auditNotes: text("auditNotes"),
-  auditScore: int("auditScore"),
-  biggestGaps: json("biggestGaps"),
+  auditScore: integer("auditScore"),
+  biggestGaps: jsonb("biggestGaps"),
   recommendedSolution: text("recommendedSolution"),
-  status: mysqlEnum("status", ["pending", "in_review", "completed", "sent"]).default("pending"),
+  status: auditStatusEnum("status").default("pending"),
 });
 
-export const proposals = mysqlTable("proposals", {
+export const proposals = pgTable("proposals", {
   id: varchar("id", { length: 36 }).primaryKey(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
   leadId: varchar("leadId", { length: 36 }).notNull(),
   proposalCode: varchar("proposalCode", { length: 50 }).unique(),
   packageName: varchar("packageName", { length: 100 }),
@@ -61,12 +71,12 @@ export const proposals = mysqlTable("proposals", {
   finalAmount: decimal("finalAmount", { precision: 10, scale: 2 }),
   alternativePaymentEnabled: boolean("alternativePaymentEnabled").default(false),
   maintenanceRecommendedPlan: varchar("maintenanceRecommendedPlan", { length: 100 }),
-  proposalStatus: mysqlEnum("proposalStatus", ["draft", "sent", "viewed", "deposit_pending", "accepted", "declined", "expired"]).default("draft"),
+  proposalStatus: proposalStatusEnum("proposalStatus").default("draft"),
   expiresAt: timestamp("expiresAt"),
   privateToken: varchar("privateToken", { length: 255 }),
 });
 
-export const clients = mysqlTable("clients", {
+export const clients = pgTable("clients", {
   id: varchar("id", { length: 36 }).primaryKey(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   leadId: varchar("leadId", { length: 36 }),
@@ -78,13 +88,13 @@ export const clients = mysqlTable("clients", {
   businessCategory: varchar("businessCategory", { length: 100 }),
   city: varchar("city", { length: 100 }),
   state: varchar("state", { length: 100 }),
-  status: mysqlEnum("status", ["active", "onboarding_pending", "project_active", "maintenance_active", "inactive"]).default("active"),
+  status: clientStatusEnum("status").default("active"),
 });
 
-export const projects = mysqlTable("projects", {
+export const projects = pgTable("projects", {
   id: varchar("id", { length: 36 }).primaryKey(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
   clientId: varchar("clientId", { length: 36 }).notNull(),
   proposalId: varchar("proposalId", { length: 36 }),
   projectName: text("projectName"),
@@ -92,13 +102,13 @@ export const projects = mysqlTable("projects", {
   totalPrice: decimal("totalPrice", { precision: 10, scale: 2 }),
   depositPaid: boolean("depositPaid").default(false),
   finalPaid: boolean("finalPaid").default(false),
-  projectStatus: mysqlEnum("projectStatus", ["waiting_on_onboarding", "strategy", "design", "build", "review", "final_payment_pending", "launch_ready", "launched", "completed", "paused", "cancelled"]).default("waiting_on_onboarding"),
+  projectStatus: projectStatusEnum("projectStatus").default("waiting_on_onboarding"),
   startDate: date("startDate"),
   targetLaunchDate: date("targetLaunchDate"),
   launchedAt: timestamp("launchedAt"),
 });
 
-export const payments = mysqlTable("payments", {
+export const payments = pgTable("payments", {
   id: varchar("id", { length: 36 }).primaryKey(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   leadId: varchar("leadId", { length: 36 }),
@@ -113,21 +123,21 @@ export const payments = mysqlTable("payments", {
   amount: decimal("amount", { precision: 10, scale: 2 }),
   currency: varchar("currency", { length: 10 }).default("usd"),
   paymentType: varchar("paymentType", { length: 50 }),
-  paymentStatus: mysqlEnum("paymentStatus", ["pending", "paid", "failed", "expired", "refunded"]).default("pending"),
-  rawEvent: json("rawEvent"),
+  paymentStatus: paymentStatusEnum("paymentStatus").default("pending"),
+  rawEvent: jsonb("rawEvent"),
 });
 
-export const maintenanceSubscriptions = mysqlTable("maintenanceSubscriptions", {
+export const maintenanceSubscriptions = pgTable("maintenanceSubscriptions", {
   id: varchar("id", { length: 36 }).primaryKey(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
   clientId: varchar("clientId", { length: 36 }).notNull(),
   projectId: varchar("projectId", { length: 36 }),
   stripeCustomerId: varchar("stripeCustomerId", { length: 255 }),
   stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }),
   planName: varchar("planName", { length: 100 }),
   monthlyPrice: decimal("monthlyPrice", { precision: 10, scale: 2 }),
-  subscriptionStatus: mysqlEnum("subscriptionStatus", ["active", "trialing", "past_due", "canceled"]).default("active"),
+  subscriptionStatus: subscriptionStatusEnum("subscriptionStatus").default("active"),
   currentPeriodStart: timestamp("currentPeriodStart"),
   currentPeriodEnd: timestamp("currentPeriodEnd"),
   cancelAtPeriodEnd: boolean("cancelAtPeriodEnd").default(false),
