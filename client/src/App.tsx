@@ -1,7 +1,6 @@
 import { createElement } from "react";
 import { Route, Switch } from "wouter";
 import Home from "./pages/Home";
-import Audit from "./pages/Audit";
 import Payment from "./pages/Payment";
 import FinalPayment from "./pages/FinalPayment";
 import PaymentSuccess from "./pages/PaymentSuccess";
@@ -20,7 +19,6 @@ export default function App() {
     Switch,
     null,
     h(Route, { path: "/", component: Home }),
-    h(Route, { path: "/audit", component: Audit }),
     h(Route, { path: "/pay/:proposalId", component: Payment }),
     h(Route, { path: "/deposit/:proposalId", component: Payment }),
     h(Route, { path: "/final-payment/:projectId", component: FinalPayment }),

@@ -197,9 +197,6 @@ export default function Home() {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="hidden sm:flex items-center gap-4"
           >
-            <motion.div whileHover={{ scale: 1.05, rotate: -1 }} whileTap={{ scale: 0.95 }}>
-              <Link href="/audit" className="bubble-btn bg-brand-yellow hover:bg-brand-yellow-hover text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black shadow-[3px_3px_0px_0px_rgba(45,30,24,1)]">Get Free Audit</Link>
-            </motion.div>
             <motion.a 
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
@@ -216,7 +213,7 @@ export default function Home() {
           <div className="xl:hidden bg-white border-t-[3px] border-brand-brown">
             <div className="px-4 py-6 space-y-3">
               {navItems.map(([id, label]) => <a key={id} href={`#${id}`} onClick={() => setMenu(false)} className="block font-display text-base uppercase tracking-wide py-2 px-4 rounded-xl hover:bg-cream-dark text-brand-brown">{label}</a>)}
-              <Link href="/audit" className="w-full bubble-btn bg-brand-yellow hover:bg-brand-yellow-hover text-brand-brown py-3 rounded-xl font-display text-sm uppercase tracking-wider text-center block font-black">Get Free Audit</Link>
+
             </div>
           </div>
         )}
@@ -242,7 +239,6 @@ export default function Home() {
                 <p className="text-brand-brown font-display text-lg sm:text-xl md:text-2xl leading-normal max-w-3xl">The $10,000 implementation gives you the complete system: strategy, premium website, menu structure, reservation and order flow, local presence, reviews, copywriting, tracking, automation, launch support, and 30-day post-launch care.</p>
                 <p className="text-brand-brown/70 text-sm sm:text-base max-w-2xl leading-relaxed">No discovery calls, no mandatory meetings, and no live sales process. The audit, proposal, payment, onboarding, material collection, review, and handoff can be handled through forms, email, and private pages.</p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                  <Link href="/audit" className="bubble-btn bg-brand-yellow hover:bg-brand-yellow-hover text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs sm:text-sm text-center">Get Free Audit</Link>
                   <a href="#value-stack" className="bubble-btn bg-white hover:bg-cream-dark text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs sm:text-sm text-center">View Value Stack</a>
                 </div>
               </div>
@@ -335,14 +331,7 @@ export default function Home() {
           <div className="flex flex-wrap gap-3 mt-8"><Link href="/scope" className="bubble-btn bg-brand-orange text-white px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Scope</Link><Link href="/terms" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Terms</Link><Link href="/privacy" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Privacy</Link><Link href="/cookies" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Cookies</Link><Link href="/refunds" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Refunds</Link></div>
         </Shell>
 
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          <div className="bg-brand-yellow rounded-[34px] border-[3px] border-brand-brown p-6 sm:p-8 md:p-10 text-center shadow-[8px_8px_0px_rgba(45,30,24,1)]">
-            <span className="text-xs font-mono tracking-widest text-brand-brown/70 font-black uppercase">NO-CALL FREE AUDIT</span>
-            <h2 className="font-display text-3xl sm:text-4xl text-brand-brown uppercase tracking-tight font-black mt-4 max-w-3xl mx-auto">Find the gaps before implementation</h2>
-            <p className="max-w-2xl mx-auto mt-4 text-brand-brown/75 text-sm sm:text-base leading-relaxed font-semibold">Submit your gastronomy business for written review. Qualified businesses can receive a private proposal and deposit payment page without a mandatory sales call.</p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-7"><Link href="/audit" className="bubble-btn bg-brand-brown text-white px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs text-center">Get Free Audit</Link><a href="#offer" className="bubble-btn bg-white text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs text-center">View Offer</a></div>
-          </div>
-        </section>
+
       </main>
 
       <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
