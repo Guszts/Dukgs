@@ -241,7 +241,8 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <a href="#value-stack" className="bubble-btn bg-white hover:bg-cream-dark text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs sm:text-sm text-center">View Value Stack</a>
                 </div>
-              </div>
+              </motion.div>
+
               <motion.div 
                 initial={{ opacity: 0, x: 30, rotate: 5 }}
                 animate={{ opacity: 1, x: 0, rotate: 1 }}
@@ -260,9 +261,9 @@ export default function Home() {
                     <div className="col-span-2 bg-brand-brown rounded-2xl border-2 border-brand-brown p-4"><p className="font-display text-xl text-cream font-black">Written Flow</p><p className="text-[11px] text-cream/80 font-bold uppercase">Audit, proposal, onboarding, review, and handoff</p></div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         <Shell id="offer" cream>
