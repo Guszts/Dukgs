@@ -1,45 +1,45 @@
-# Dilgs - Agência Digital Editorial
+# DILGS - Digital Presence Systems (Dukgs)
 
-Uma agência digital moderna com design editorial, integração completa com Stripe para pagamentos e Supabase para banco de dados.
+A premium digital agency system with editorial design, complete **Stripe** integration for payments, and **Drizzle ORM** for database management.
 
-## 🎨 Características
+## 🎨 Features
 
-- **Design Editorial**: Tipografia refinada, estrutura clara, paleta preto/branco/amarelo
-- **Landing Page Completa**: Hero, Serviços, Portfólio, Processo, FAQ e CTA
-- **Integração Stripe**: Checkout de depósito, pagamento final e assinatura de manutenção
-- **Banco de Dados**: Supabase com tabelas para leads, clientes, propostas, projetos e pagamentos
-- **Formulário de Contato**: Captura de leads com validação
-- **Painel Administrativo**: Dashboard protegido por autenticação para gerenciar dados
-- **Webhooks**: Atualização automática de status de pagamentos
-- **Testes**: Suite Vitest com testes de procedures
+- **Editorial Design**: Refined typography, clear structure, brutalist-inspired palette (Black/White/Yellow).
+- **High-Conversion Landing Page**: Hero, Services, Portfolio, Process, FAQ, and CTA sections.
+- **Stripe Integration**: Checkout for deposits, final payments, and monthly growth care subscriptions.
+- **Database Architecture**: Drizzle ORM (MySQL) with tables for leads, audit requests, proposals, clients, projects, and payments.
+- **Lead Capture System**: Contact form with validation and asynchronous routing.
+- **Admin Dashboard**: Protected dashboard to manage leads, projects, and business operations.
+- **Webhooks**: Automatic payment status updates and project lifecycle triggers.
+- **Testing Suite**: Vitest suite covering authentication, procedures, and logic.
 
-## 🚀 Tecnologias
+## 🚀 Tech Stack
 
-- **Frontend**: React 19 + Tailwind CSS 4 + TypeScript
-- **Backend**: Express 4 + tRPC 11 + Node.js
-- **Banco de Dados**: MySQL (Supabase)
-- **Pagamentos**: Stripe
-- **Autenticação**: Manus OAuth
-- **Testes**: Vitest
+- **Frontend**: React 19 + Tailwind CSS 4 + TypeScript + Wouter.
+- **Backend**: Express 4 + tRPC 11 + Node.js.
+- **Database**: MySQL (Compatible with TiDB, PlanetScale, or self-hosted MySQL) via Drizzle ORM.
+- **Payments**: Stripe API.
+- **Authentication**: Manus OAuth.
+- **Testing**: Vitest.
 
-## 📋 Pré-requisitos
+## 📋 Prerequisites
 
 - Node.js 22+
 - pnpm 10+
-- Conta Stripe (para pagamentos)
-- Banco de dados MySQL (Supabase)
+- Stripe Account (for payments)
+- MySQL Database (e.g., TiDB Serverless or PlanetScale)
 
-## 🛠️ Setup Local
+## 🛠️ Local Setup
 
-### 1. Instalar Dependências
+### 1. Install Dependencies
 
 ```bash
 pnpm install
 ```
 
-### 2. Configurar Variáveis de Ambiente
+### 2. Environment Variables
 
-Crie um arquivo `.env.local`:
+Create a `.env.local` file:
 
 ```env
 # Database
@@ -55,99 +55,83 @@ VITE_APP_ID=your_app_id
 OAUTH_SERVER_URL=https://api.manus.im
 VITE_OAUTH_PORTAL_URL=https://manus.im/login
 
-# Outros
+# Others
 JWT_SECRET=your_jwt_secret
 OWNER_OPEN_ID=your_open_id
 OWNER_NAME=Your Name
+VITE_FRONTEND_URL=http://localhost:3000
 ```
 
-### 3. Executar Migrations
+### 3. Database Migrations
 
 ```bash
 pnpm drizzle-kit generate
 pnpm drizzle-kit migrate
 ```
 
-### 4. Iniciar Servidor de Desenvolvimento
+### 4. Start Development Server
 
 ```bash
 pnpm dev
 ```
 
-O servidor estará disponível em `http://localhost:3000`
+The server will be available at `http://localhost:3000`
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
-├── client/                 # Frontend React
+├── client/                 # React Frontend
 │   ├── src/
-│   │   ├── pages/         # Páginas (Home, Contact, Admin, etc)
-│   │   ├── components/    # Componentes reutilizáveis
-│   │   ├── App.tsx        # Router principal
-│   │   └── index.css      # Estilos globais
-│   └── public/            # Assets estáticos
-├── server/                # Backend Express + tRPC
-│   ├── routers.ts         # Procedures tRPC
-│   ├── db.ts              # Query helpers
-│   ├── stripe.ts          # Integração Stripe
-│   └── _core/             # Configuração core
-├── drizzle/               # Schema e migrations
-├── shared/                # Código compartilhado
+│   │   ├── pages/         # Application Pages
+│   │   ├── components/    # Reusable UI Components
+│   │   ├── App.tsx        # Main Router
+│   │   └── index.css      # Global Styles
+│   └── public/            # Static Assets
+├── server/                # Express + tRPC Backend
+│   ├── routers.ts         # tRPC Procedures & Logic
+│   ├── db.ts              # Database Query Helpers
+│   ├── stripe.ts          # Stripe API Integration
+│   └── _core/             # Core Configuration & Setup
+├── drizzle/               # Database Schema & Migrations
+├── shared/                # Shared Types & Constants
 └── package.json
 ```
 
-## 🔌 Endpoints Principais
+## 🔌 Main Endpoints
 
-### Públicos
+### Public
 - `GET /` - Landing page
-- `GET /contato` - Página de contato
-- `POST /api/trpc/leads.create` - Criar novo lead
-- `POST /api/stripe/webhook` - Webhook do Stripe
+- `POST /api/trpc/leads.create` - Create new lead
+- `POST /api/stripe/webhook` - Stripe Webhook listener
 
-### Protegidos (Admin)
-- `GET /admin` - Dashboard administrativo
-- `GET /api/trpc/leads.list` - Listar leads
-- `GET /api/trpc/projects.list` - Listar projetos
-- `GET /api/trpc/payments.listByClient` - Listar pagamentos
+### Protected (Admin)
+- `GET /admin` - Admin Dashboard
+- `GET /api/trpc/leads.list` - List all leads
+- `GET /api/trpc/projects.list` - List all projects
+- `GET /api/trpc/payments.listByClient` - List payments for a client
 
-## 💳 Fluxo de Pagamento
+## 🧪 Testing
 
-1. Cliente acessa landing page e clica em "Começar Projeto"
-2. Preenche formulário de contato (cria lead)
-3. Admin cria proposta com valores
-4. Cliente recebe link de pagamento
-5. Stripe processa pagamento
-6. Webhook atualiza status no banco de dados
-7. Cliente recebe confirmação
-
-## 🧪 Testes
-
-Executar suite de testes:
+Run the test suite:
 
 ```bash
 pnpm test
 ```
 
-Testes incluem:
-- Autenticação e logout
-- Criação de leads
-- Validação de formulários
-- Autorização admin
-
-## 📦 Build para Produção
+## 📦 Production Build
 
 ```bash
 pnpm build
 pnpm start
 ```
 
-## 🌐 Deploy na Vercel
+## 🌐 Deployment on Vercel
 
-1. Conectar repositório GitHub
-2. Adicionar variáveis de ambiente no Vercel
-3. Deploy automático em cada push para `main`
+1. Connect your GitHub repository.
+2. Add all environment variables in the Vercel Dashboard.
+3. Automatic deployment on every push to `main`.
 
-### Variáveis Necessárias na Vercel
+### Required Environment Variables for Vercel
 
 ```
 DATABASE_URL
@@ -160,36 +144,8 @@ VITE_OAUTH_PORTAL_URL
 JWT_SECRET
 OWNER_OPEN_ID
 OWNER_NAME
+VITE_FRONTEND_URL
 ```
 
-## 📝 Checklist de Funcionalidades
-
-- [x] Design Editorial
-- [x] Landing page com 6 seções
-- [x] Integração Stripe (depósito, pagamento final, manutenção)
-- [x] Banco de dados com 6 tabelas
-- [x] Formulário de contato
-- [x] Painel administrativo
-- [x] Webhooks do Stripe
-- [x] Testes Vitest
-- [x] Deploy pronto para Vercel
-
-## 🤝 Contribuindo
-
-1. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-2. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-3. Push para a branch (`git push origin feature/AmazingFeature`)
-4. Abra um Pull Request
-
-## 📄 Licença
-
-MIT
-
-## 📧 Contato
-
-- Email: contato@dilgs.com
-- Website: https://dilgs.com
-
 ---
-
-Desenvolvido com ❤️ e design editorial.
+© 2026 DILGS. All rights reserved. Premium Digital Presence Systems.

@@ -5,9 +5,9 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'Serviços', href: '#services' },
-    { label: 'Portfólio', href: '#portfolio' },
-    { label: 'Processo', href: '#process' },
+    { label: 'Services', href: '#services' },
+    { label: 'Portfolio', href: '#portfolio' },
+    { label: 'Process', href: '#process' },
     { label: 'FAQ', href: '#faq' },
   ];
 
@@ -30,7 +30,7 @@ export function Header() {
             </a>
           ))}
           <BrutalButton variant="yellow" className="text-sm py-2 px-4">
-            Contato
+            Contact
           </BrutalButton>
         </nav>
 
@@ -58,7 +58,7 @@ export function Header() {
               </a>
             ))}
             <BrutalButton variant="yellow" className="w-full text-sm">
-              Contato
+              Contact
             </BrutalButton>
           </div>
         </nav>

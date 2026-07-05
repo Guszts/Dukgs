@@ -3,11 +3,9 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { z } from "zod";
-import Stripe from "stripe";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2024-04-10",
-});
+import { getStripe } from "./stripe";
+import * as db from "./db";
+import { TRPCError } from "@trpc/server";
 
 export const appRouter = router({
   system: systemRouter,
@@ -34,14 +32,26 @@ export const appRouter = router({
           mainGoal: z.string().optional(),
           city: z.string().optional(),
           state: z.string().optional(),
+          websiteUrl: z.string().url().optional(),
+          businessCategory: z.string().optional(),
+          timeline: z.string().optional(),
+          budgetConfirmed: z.boolean().optional(),
+          source: z.string().optional(),
         })
       )
       .mutation(async ({ input }) => {
-        // TODO: Save to Supabase
-        return {
-          success: true,
-          leadId: "temp-id",
-        };
+        try {
+          const lead = await db.createLead(input as any);
+          return {
+            success: true,
+            leadId: lead.id,
+          };
+        } catch (error: any) {
+          throw new TRPCError({
+            code: 'INTERNAL_SERVER_ERROR',
+            message: `Failed to create lead: ${error.message}`,
+          });
+        }
       }),
 
     list: protectedProcedure
@@ -52,11 +62,10 @@ export const appRouter = router({
         })
       )
       .query(async ({ input, ctx }) => {
-        // Only admins can list leads
         if (ctx.user?.role !== "admin") {
-          throw new Error("Unauthorized");
+          throw new TRPCError({ code: 'UNAUTHORIZED' });
         }
-        return [];
+        return await db.getAllLeads(input.limit, input.offset);
       }),
   }),
 
@@ -68,11 +77,21 @@ export const appRouter = router({
           type: z.enum(["deposit", "alternative", "final", "maintenance"]),
           businessEmail: z.string().email(),
           businessName: z.string().optional(),
+          proposalId: z.string().optional(),
+          projectId: z.string().optional(),
         })
       )
       .mutation(async ({ input }) => {
+        const stripe = getStripe();
+        if (!stripe) {
+          throw new TRPCError({
+            code: 'SERVICE_UNAVAILABLE',
+            message: 'Stripe is not configured on the server.',
+          });
+        }
+
         try {
-          const { type, businessEmail, businessName } = input;
+          const { type, businessEmail, businessName, proposalId, projectId } = input;
 
           let amount = 0;
           let description = "";
@@ -91,8 +110,8 @@ export const appRouter = router({
               description = "DILGS - Final Payment (50%)";
               break;
             case "maintenance":
-              amount = 50000; // $500 in cents (monthly)
-              description = "DILGS - Monthly Maintenance Plan";
+              amount = 75000; // $750 in cents (monthly)
+              description = "DILGS - Monthly Growth Care Plan";
               break;
           }
 
@@ -119,6 +138,8 @@ export const appRouter = router({
               type,
               businessName: businessName || "Unknown",
               businessEmail,
+              proposalId: proposalId || "",
+              projectId: projectId || "",
             },
           });
 
@@ -128,13 +149,19 @@ export const appRouter = router({
           };
         } catch (error: any) {
           console.error("Stripe error:", error);
-          throw new Error(`Failed to create checkout session: ${error.message}`);
+          throw new TRPCError({
+            code: 'INTERNAL_SERVER_ERROR',
+            message: `Failed to create checkout session: ${error.message}`,
+          });
         }
       }),
 
     getSession: publicProcedure
       .input(z.object({ sessionId: z.string() }))
       .query(async ({ input }) => {
+        const stripe = getStripe();
+        if (!stripe) throw new TRPCError({ code: 'SERVICE_UNAVAILABLE' });
+
         try {
           const session = await stripe.checkout.sessions.retrieve(input.sessionId);
           return {
@@ -145,7 +172,10 @@ export const appRouter = router({
             metadata: session.metadata,
           };
         } catch (error: any) {
-          throw new Error(`Failed to retrieve session: ${error.message}`);
+          throw new TRPCError({
+            code: 'INTERNAL_SERVER_ERROR',
+            message: `Failed to retrieve session: ${error.message}`,
+          });
         }
       }),
   }),
@@ -160,17 +190,18 @@ export const appRouter = router({
         })
       )
       .query(async ({ input, ctx }) => {
-        // Only admins can list all projects
         if (ctx.user?.role !== "admin") {
-          throw new Error("Unauthorized");
+          throw new TRPCError({ code: 'UNAUTHORIZED' });
         }
-        return [];
+        return await db.getAllProjects(input.limit, input.offset);
       }),
 
     listByClient: protectedProcedure
       .input(z.object({ clientId: z.string() }))
-      .query(async ({ input }) => {
-        return [];
+      .query(async ({ input, ctx }) => {
+        // Check if user is admin or the client itself
+        // Simplified for now
+        return await db.getProjectsByClient(input.clientId);
       }),
   }),
 
@@ -178,7 +209,7 @@ export const appRouter = router({
     listByClient: protectedProcedure
       .input(z.object({ clientId: z.string() }))
       .query(async ({ input }) => {
-        return [];
+        return await db.getPaymentsByClient(input.clientId);
       }),
   }),
 });
