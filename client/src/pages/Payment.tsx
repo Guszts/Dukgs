@@ -121,33 +121,17 @@ export default function Payment() {
 
               <div className="space-y-3 bg-white border-[3px] border-brand-brown rounded-2xl p-4">
                 <p className="text-[11px] font-display uppercase tracking-wider text-brand-brown font-black mb-1">Confirmations</p>
-                <label className="flex items-start gap-3 text-xs font-bold text-brand-brown cursor-pointer">
-                  <input type="checkbox" checked={confirmScope} onChange={(e) => setConfirmScope(e.target.checked)} required className="mt-0.5 accent-brand-orange" />
-                  <span>I understand this is a fixed-scope custom digital implementation service.</span>
-                </label>
-                <label className="flex items-start gap-3 text-xs font-bold text-brand-brown cursor-pointer">
-                  <input type="checkbox" checked={confirmMaintenance} onChange={(e) => setConfirmMaintenance(e.target.checked)} required className="mt-0.5 accent-brand-orange" />
-                  <span>I understand maintenance is separate unless explicitly included.</span>
-                </label>
-                <label className="flex items-start gap-3 text-xs font-bold text-brand-brown cursor-pointer">
-                  <input type="checkbox" checked={confirmStart} onChange={(e) => setConfirmStart(e.target.checked)} required className="mt-0.5 accent-brand-orange" />
-                  <span>I understand work starts after payment review, scope confirmation, and onboarding materials.</span>
-                </label>
-                <label className="flex items-start gap-3 text-xs font-bold text-brand-brown cursor-pointer">
-                  <input type="checkbox" checked={confirmNoGuarantees} onChange={(e) => setConfirmNoGuarantees(e.target.checked)} required className="mt-0.5 accent-brand-orange" />
-                  <span>I understand there are no guaranteed revenue, ranking, traffic, leads, or sales outcomes.</span>
-                </label>
-                <label className="flex items-start gap-3 text-xs font-bold text-brand-brown cursor-pointer border-t-2 border-brand-brown/10 pt-3 mt-2">
-                  <input type="checkbox" checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} required className="mt-0.5 accent-brand-orange" />
-                  <span>I accept the <Link href="/terms" className="underline">Terms</Link>, <Link href="/privacy" className="underline">Privacy Policy</Link>, and <Link href="/refunds" className="underline">Refund Policy</Link>.</span>
-                </label>
+                <label className="flex items-start gap-3 text-xs font-bold text-brand-brown cursor-pointer"><input type="checkbox" checked={confirmScope} onChange={(e) => setConfirmScope(e.target.checked)} required className="mt-0.5 accent-brand-orange" /><span>I understand this is a fixed-scope custom digital implementation service.</span></label>
+                <label className="flex items-start gap-3 text-xs font-bold text-brand-brown cursor-pointer"><input type="checkbox" checked={confirmMaintenance} onChange={(e) => setConfirmMaintenance(e.target.checked)} required className="mt-0.5 accent-brand-orange" /><span>I understand maintenance is separate unless explicitly included.</span></label>
+                <label className="flex items-start gap-3 text-xs font-bold text-brand-brown cursor-pointer"><input type="checkbox" checked={confirmStart} onChange={(e) => setConfirmStart(e.target.checked)} required className="mt-0.5 accent-brand-orange" /><span>I understand work starts after payment review, scope confirmation, and onboarding materials.</span></label>
+                <label className="flex items-start gap-3 text-xs font-bold text-brand-brown cursor-pointer"><input type="checkbox" checked={confirmNoGuarantees} onChange={(e) => setConfirmNoGuarantees(e.target.checked)} required className="mt-0.5 accent-brand-orange" /><span>I understand there are no guaranteed revenue, ranking, traffic, leads, or sales outcomes.</span></label>
+                <label className="flex items-start gap-3 text-xs font-bold text-brand-brown cursor-pointer border-t-2 border-brand-brown/10 pt-3 mt-2"><input type="checkbox" checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} required className="mt-0.5 accent-brand-orange" /><span>I accept the <Link href="/terms" className="underline">Terms</Link>, <Link href="/privacy" className="underline">Privacy Policy</Link>, and <Link href="/refunds" className="underline">Refund Policy</Link>.</span></label>
               </div>
 
               {error && <div className="rounded-2xl border-[3px] border-brand-brown bg-white p-4 text-sm font-bold text-brand-brown">{error}</div>}
 
               <button type="submit" disabled={loading} className="bubble-btn bg-brand-yellow hover:bg-brand-yellow-hover text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs sm:text-sm text-center w-full disabled:opacity-60">{loading ? "Creating Checkout" : "Pay Project Deposit"}</button>
-              
-              <p className="text-[10px] text-center font-bold text-brand-brown/50 uppercase tracking-tighter">Secure checkout via Stripe • Support: contact@dilgs.online</p>
+              <p className="text-[10px] text-center font-bold text-brand-brown/50 uppercase tracking-tighter">Secure checkout via Stripe • Support: dilgs.online@gmail.com</p>
             </form>
           </div>
         </div>
