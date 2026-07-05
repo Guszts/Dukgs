@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "wouter";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
   ["offer", "Offer"],
@@ -110,21 +111,30 @@ function Marker() {
 
 function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title: string; text?: string }) {
   return (
-    <div className="max-w-3xl space-y-4">
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="max-w-3xl space-y-4"
+    >
       <span className="text-xs font-mono tracking-widest text-brand-orange font-black uppercase">{eyebrow}</span>
       <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-brand-brown uppercase tracking-tight font-black">{title}</h2>
       <div className="h-1.5 w-16 bg-brand-orange rounded-full" />
       {text && <p className="text-brand-brown/75 text-sm sm:text-base leading-relaxed font-medium">{text}</p>}
-    </div>
+    </motion.div>
   );
 }
 
 function Card({ title, text }: { title: string; text?: string }) {
   return (
-    <div className="bg-cream rounded-[28px] border-[3px] border-brand-brown p-5 shadow-[5px_5px_0px_rgba(45,30,24,1)]">
+    <motion.div 
+      whileHover={{ y: -5, x: -2, shadow: "7px 7px 0px rgba(45,30,24,1)" }}
+      className="bg-cream rounded-[28px] border-[3px] border-brand-brown p-5 shadow-[5px_5px_0px_rgba(45,30,24,1)] transition-all"
+    >
       <h3 className="font-display text-base uppercase text-brand-brown tracking-wide font-black">{title}</h3>
       {text && <p className="mt-3 text-xs sm:text-sm text-brand-brown/75 leading-relaxed font-medium">{text}</p>}
-    </div>
+    </motion.div>
   );
 }
 
@@ -176,9 +186,19 @@ export default function Home() {
 
       <main className="pb-8 space-y-2">
         <section id="home" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
-          <div className="bento-card p-6 sm:p-8 md:p-12 bg-white rounded-[34px] sm:rounded-[54px] border-[3px] border-brand-brown">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="bento-card p-6 sm:p-8 md:p-12 bg-white rounded-[34px] sm:rounded-[54px] border-[3px] border-brand-brown"
+          >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              <div className="lg:col-span-8 space-y-6">
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="lg:col-span-8 space-y-6"
+              >
                 <div className="flex gap-3 items-center"><Marker /><span className="text-xs font-mono tracking-widest text-brand-brown/60 uppercase">NO-CALL GASTRONOMY DIGITAL PRESENCE SYSTEM</span></div>
                 <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-brand-brown leading-[1.05] tracking-tight font-black">One Complete Digital Presence System Without Sales Calls</h1>
                 <p className="text-brand-brown font-display text-lg sm:text-xl md:text-2xl leading-normal max-w-3xl">The $10,000 implementation gives you the complete system: strategy, premium website, menu structure, reservation and order flow, local presence, reviews, copywriting, tracking, automation, launch support, and 30-day post-launch care.</p>
@@ -188,8 +208,13 @@ export default function Home() {
                   <a href="#value-stack" className="bubble-btn bg-white hover:bg-cream-dark text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs sm:text-sm text-center">View Value Stack</a>
                 </div>
               </div>
-              <div className="lg:col-span-4">
-                <div className="relative bg-cream rounded-[36px] border-[3px] border-brand-brown p-5 shadow-[8px_8px_0px_rgba(45,30,24,1)] rotate-1">
+              <motion.div 
+                initial={{ opacity: 0, x: 30, rotate: 5 }}
+                animate={{ opacity: 1, x: 0, rotate: 1 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="lg:col-span-4"
+              >
+                <div className="relative bg-cream rounded-[36px] border-[3px] border-brand-brown p-5 shadow-[8px_8px_0px_rgba(45,30,24,1)]">
                   <div className="bg-brand-yellow rounded-[28px] border-[3px] border-brand-brown p-6 -rotate-2">
                     <p className="font-mono text-[10px] tracking-widest uppercase text-brand-brown/70 font-black">Async Implementation</p>
                     <p className="font-display text-5xl sm:text-6xl text-brand-brown font-black mt-2">US$10K</p>
@@ -283,10 +308,26 @@ export default function Home() {
       </main>
 
       <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
-        <div className="bg-white rounded-[32px] border-[3px] border-brand-brown p-6 sm:p-8 flex flex-col lg:flex-row justify-between gap-8">
-          <div><p className="font-display text-3xl text-brand-brown font-black">Dilgs<span className="text-brand-orange">.</span></p><p className="mt-2 text-sm text-brand-brown/65 font-semibold max-w-md">Premium digital presence systems for gastronomy businesses in the United States. No calls required.</p><p className="mt-3 text-xs text-brand-brown/55 font-bold">Payments processed securely by Stripe. Full card numbers are not stored by DILGS.</p></div>
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-white rounded-[32px] border-[3px] border-brand-brown p-6 sm:p-8 flex flex-col lg:flex-row justify-between gap-8"
+        >
+          <div>
+            <motion.p 
+              initial={{ scale: 0.9 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              className="font-display text-4xl sm:text-5xl text-brand-brown font-black"
+            >
+              Dilgs<span className="text-brand-orange">.</span>
+            </motion.p>
+            <p className="mt-2 text-sm text-brand-brown/65 font-semibold max-w-md">Premium digital presence systems for gastronomy businesses in the United States. No calls required.</p>
+            <p className="mt-3 text-xs text-brand-brown/55 font-bold">Payments processed securely by Stripe. Full card numbers are not stored by DILGS.</p>
+          </div>
           <div className="grid grid-cols-2 sm:grid-cols-6 gap-4 text-xs font-display uppercase tracking-wider font-black"><Link href="/scope">Scope</Link><Link href="/onboarding/new">Onboarding</Link><Link href="/terms">Terms</Link><Link href="/privacy">Privacy</Link><Link href="/cookies">Cookies</Link><Link href="/refunds">Refunds</Link></div>
-        </div>
+        </motion.div>
       </footer>
     </div>
   );
