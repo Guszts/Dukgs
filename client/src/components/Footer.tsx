@@ -28,22 +28,14 @@ export function Footer() {
               <li><a href="#portfolio" className="hover:text-brutalist-yellow transition-colors">Portfólio</a></li>
               <li><a href="#process" className="hover:text-brutalist-yellow transition-colors">Processo</a></li>
               <li><a href="#faq" className="hover:text-brutalist-yellow transition-colors">FAQ</a></li>
-              <li><a href="#" className="hover:text-brutalist-yellow transition-colors">Blog</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-display text-sm mb-4 uppercase">Contato</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="mailto:contato@dukgs.com" className="hover:text-brutalist-yellow transition-colors">contato@dukgs.com</a></li>
-              <li><a href="tel:+5511999999999" className="hover:text-brutalist-yellow transition-colors">(11) 99999-9999</a></li>
-              <li className="pt-2">
-                <div className="flex gap-3">
-                  <a href="#" className="hover:text-brutalist-yellow transition-colors">Twitter</a>
-                  <a href="#" className="hover:text-brutalist-yellow transition-colors">LinkedIn</a>
-                  <a href="#" className="hover:text-brutalist-yellow transition-colors">GitHub</a>
-                </div>
-              </li>
+              <li><a href="mailto:dilgs.online@gmail.com" className="hover:text-brutalist-yellow transition-colors">dilgs.online@gmail.com</a></li>
+              <li className="text-xs opacity-70">Remote project communication by email and onboarding forms</li>
             </ul>
           </div>
         </div>
@@ -54,9 +46,9 @@ export function Footer() {
               © {currentYear} DUKGS. Todos os direitos reservados.
             </p>
             <div className="flex gap-6 text-sm">
-              <a href="#" className="hover:text-brutalist-yellow transition-colors">Privacidade</a>
-              <a href="#" className="hover:text-brutalist-yellow transition-colors">Termos</a>
-              <a href="#" className="hover:text-brutalist-yellow transition-colors">Cookies</a>
+              <a href="/privacy" className="hover:text-brutalist-yellow transition-colors">Privacidade</a>
+              <a href="/terms" className="hover:text-brutalist-yellow transition-colors">Termos</a>
+              <a href="/cookies" className="hover:text-brutalist-yellow transition-colors">Cookies</a>
             </div>
           </div>
         </div>
