@@ -302,6 +302,11 @@ export default function Home() {
               </div>
             ))}
           </div>
+          <div className="mt-10 flex flex-col items-center justify-center space-y-2">
+            <p className="font-display text-2xl sm:text-3xl text-brand-brown/50 line-through font-black">US$43,500</p>
+            <p className="font-display text-5xl sm:text-6xl text-brand-brown font-black">US$10,000</p>
+            <p className="text-xs font-mono tracking-widest text-brand-orange font-black uppercase mt-2">Fixed Implementation</p>
+          </div>
         </Shell>
 
         <Shell id="process">
