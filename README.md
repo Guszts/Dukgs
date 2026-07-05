@@ -1,4 +1,4 @@
-# DILGS - Digital Presence Systems (Dukgs)
+# DILGS - Digital Presence Systems
 
 A premium digital agency system with editorial design, complete **Stripe** integration for payments, and **Drizzle ORM** for database management.
 

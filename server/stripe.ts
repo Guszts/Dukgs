@@ -7,7 +7,7 @@ export function getStripe() {
     _stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2025-01-27' as any, // Using a stable version
       appInfo: {
-        name: 'DILGS-DUKGS',
+        name: 'DILGS',
         version: '1.0.0',
       },
     });

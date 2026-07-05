@@ -1,58 +1,68 @@
+import { Link } from 'wouter';
+import { motion } from 'framer-motion';
+import { Mail } from 'lucide-react';
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const links = [
+    { label: 'Scope', href: '/scope' },
+    { label: 'Onboarding', href: '/onboarding/new' },
+    { label: 'Terms', href: '/terms' },
+    { label: 'Privacy', href: '/privacy' },
+    { label: 'Cookies', href: '/cookies' },
+    { label: 'Refunds', href: '/refunds' },
+  ];
+
   return (
-    <footer className="bg-brutalist-black text-brutalist-white border-t-4 border-brutalist-yellow">
-      <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          <div>
-            <h3 className="font-display text-lg mb-4">DUKGS</h3>
-            <p className="text-sm leading-relaxed">
-              Digital agency with brutally honest design and impeccable functionality.
-            </p>
+    <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, type: 'spring', stiffness: 80 }}
+        className="bg-white rounded-[32px] border-[3px] border-brand-brown p-6 sm:p-8 flex flex-col lg:flex-row justify-between gap-8"
+      >
+        <div className="space-y-4">
+          <motion.p
+            initial={{ scale: 0.9 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            className="font-display text-3xl sm:text-4xl text-brand-brown font-black"
+          >
+            Dilgs<span className="text-brand-orange">.</span>
+          </motion.p>
+          <p className="text-sm text-brand-brown/65 font-semibold max-w-md leading-relaxed">
+            Premium digital presence systems for gastronomy businesses. No calls required.
+          </p>
+          <div className="flex items-center gap-2 text-sm text-brand-brown/60 font-bold">
+            <Mail className="w-4 h-4 text-brand-orange" />
+            <a href="mailto:dilgs.online@gmail.com" className="hover:text-brand-orange transition-colors">
+              dilgs.online@gmail.com
+            </a>
           </div>
-
-          <div>
-            <h4 className="font-display text-sm mb-4 uppercase">Services</h4>
-            <ul className="space-y-2 text-sm">
-              <li><a href="#services" className="hover:text-brutalist-yellow transition-colors">Web Design</a></li>
-              <li><a href="#services" className="hover:text-brutalist-yellow transition-colors">Development</a></li>
-              <li><a href="#services" className="hover:text-brutalist-yellow transition-colors">E-commerce</a></li>
-              <li><a href="#services" className="hover:text-brutalist-yellow transition-colors">Maintenance</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display text-sm mb-4 uppercase">Company</h4>
-            <ul className="space-y-2 text-sm">
-              <li><a href="#portfolio" className="hover:text-brutalist-yellow transition-colors">Portfolio</a></li>
-              <li><a href="#process" className="hover:text-brutalist-yellow transition-colors">Process</a></li>
-              <li><a href="#faq" className="hover:text-brutalist-yellow transition-colors">FAQ</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display text-sm mb-4 uppercase">Contact</h4>
-            <ul className="space-y-2 text-sm">
-              <li><a href="mailto:dilgs.online@gmail.com" className="hover:text-brutalist-yellow transition-colors">dilgs.online@gmail.com</a></li>
-              <li className="text-xs opacity-70">Remote project communication by email and onboarding forms</li>
-            </ul>
-          </div>
+          <p className="text-xs text-brand-brown/55 font-bold">
+            Payments processed securely by Stripe. Full card numbers are not stored by Dilgs.
+          </p>
         </div>
 
-        <div className="border-t-4 border-brutalist-yellow pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm">
-              © {currentYear} DUKGS. All rights reserved.
-            </p>
-            <div className="flex gap-6 text-sm">
-              <a href="/privacy" className="hover:text-brutalist-yellow transition-colors">Privacy</a>
-              <a href="/terms" className="hover:text-brutalist-yellow transition-colors">Terms</a>
-              <a href="/cookies" className="hover:text-brutalist-yellow transition-colors">Cookies</a>
-            </div>
+        <div className="flex flex-col gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-display uppercase tracking-wider font-black">
+            {links.map(({ label, href }) => (
+              <Link
+                key={label}
+                href={href}
+                className="text-brand-brown hover:text-brand-orange transition-colors"
+              >
+                {label}
+              </Link>
+            ))}
           </div>
+          <p className="text-xs text-brand-brown/50 font-mono mt-2">
+            © {currentYear} Dilgs. All rights reserved.
+          </p>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }
