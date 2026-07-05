@@ -1,7 +1,7 @@
 import { eq, desc } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { nanoid } from "nanoid";
+import { randomUUID } from "crypto";
 import { 
   users, 
   leads, 
@@ -87,11 +87,11 @@ export async function createLead(data: Omit<Lead, "id" | "createdAt" | "updatedA
   const db = await getDb();
   if (!db) {
     console.warn("[Database] Cannot create lead: database not available");
-    return { id: nanoid(), ...data };
+    return { id: randomUUID(), ...data };
   }
   
   try {
-    const id = nanoid();
+    const id = randomUUID();
     const newLead = {
       id,
       ...data,
