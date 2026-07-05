@@ -7,6 +7,8 @@ import FinalPayment from "./pages/FinalPayment";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import Maintenance from "./pages/Maintenance";
 import Onboarding from "./pages/Onboarding";
+import OfferScope from "./pages/OfferScope";
+import LeadCRM from "./pages/LeadCRM";
 import AdminDashboard from "./pages/AdminDashboard";
 import LegalPage from "./pages/LegalPage";
 import NotFound from "./pages/NotFound";
@@ -24,6 +26,8 @@ export default function App() {
     h(Route, { path: "/final-payment/:projectId", component: FinalPayment }),
     h(Route, { path: "/maintenance", component: Maintenance }),
     h(Route, { path: "/onboarding/:clientId", component: Onboarding }),
+    h(Route, { path: "/scope", component: OfferScope }),
+    h(Route, { path: "/crm", component: LeadCRM }),
     h(Route, { path: "/success", component: PaymentSuccess }),
     h(Route, { path: "/payment-success", component: PaymentSuccess }),
     h(Route, { path: "/terms", component: LegalPage }),

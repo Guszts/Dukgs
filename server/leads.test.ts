@@ -47,7 +47,7 @@ describe("leads", () => {
     const result = await caller.leads.create({
       name: "João Silva",
       email: "joao@example.com",
-      phone: "(11) 99999-9999",
+      phone: "11900000000",
       company: "Empresa XYZ",
       message: "Gostaria de um novo website para minha empresa.",
       projectType: "website",
