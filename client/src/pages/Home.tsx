@@ -162,17 +162,55 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <a href="#home" className="font-display text-2xl sm:text-3xl md:text-4xl tracking-tight text-brand-brown font-black">Dilgs<span className="text-brand-orange">.</span></a>
+        <motion.div 
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between"
+        >
+          <motion.a 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            href="#home" 
+            className="font-display text-2xl sm:text-3xl md:text-4xl tracking-tight text-brand-brown font-black"
+          >
+            Dilgs<span className="text-brand-orange">.</span>
+          </motion.a>
           <nav className="hidden xl:flex items-center gap-6">
-            {navItems.map(([id, label]) => <a key={id} href={`#${id}`} className="font-display text-xs uppercase tracking-wider text-brand-brown hover:text-brand-orange">{label}</a>)}
+            {navItems.map(([id, label], idx) => (
+              <motion.a 
+                key={id} 
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * idx, duration: 0.3 }}
+                whileHover={{ y: -2 }}
+                href={`#${id}`} 
+                className="font-display text-xs uppercase tracking-wider text-brand-brown hover:text-brand-orange"
+              >
+                {label}
+              </motion.a>
+            ))}
           </nav>
-          <div className="hidden sm:flex items-center gap-4">
-            <Link href="/audit" className="bubble-btn bg-brand-yellow hover:bg-brand-yellow-hover text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Get Free Audit</Link>
-            <a href="#value-stack" className="p-2.5 bg-white border-2 border-brand-brown/70 rounded-full font-display text-xs font-black">Value</a>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="hidden sm:flex items-center gap-4"
+          >
+            <motion.div whileHover={{ scale: 1.05, rotate: -1 }} whileTap={{ scale: 0.95 }}>
+              <Link href="/audit" className="bubble-btn bg-brand-yellow hover:bg-brand-yellow-hover text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black shadow-[3px_3px_0px_0px_rgba(45,30,24,1)]">Get Free Audit</Link>
+            </motion.div>
+            <motion.a 
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+              href="#value-stack" 
+              className="p-2.5 bg-white border-2 border-brand-brown/70 rounded-full font-display text-xs font-black"
+            >
+              Value
+            </motion.a>
+          </motion.div>
           <button onClick={() => setMenu(!menu)} className="xl:hidden p-2 border-[3px] border-brand-brown rounded-xl bg-white text-brand-brown font-display font-black uppercase text-xs">Menu</button>
-        </div>
+        </motion.div>
 
         {menu && (
           <div className="xl:hidden bg-white border-t-[3px] border-brand-brown">

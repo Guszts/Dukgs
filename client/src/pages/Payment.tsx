@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
+import { motion } from "framer-motion";
 
 type PaymentStructure = "deposit_standard" | "deposit_alternative";
 
@@ -54,12 +55,21 @@ export default function Payment() {
     <div className="min-h-screen bg-white px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <div className="grain-overlay" />
       <div className="max-w-6xl mx-auto">
-        <div className="mb-6 flex items-center justify-between">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6 flex items-center justify-between"
+        >
           <Link href="/" className="font-display text-2xl sm:text-3xl text-brand-brown font-black">Dilgs<span className="text-brand-orange">.</span></Link>
-          <Link href="/" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Back</Link>
-        </div>
+          <Link href="/" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black shadow-[3px_3px_0px_0px_rgba(45,30,24,1)]">Back</Link>
+        </motion.div>
 
-        <div className="bento-card bg-white rounded-[40px] sm:rounded-[54px] border-[3px] border-brand-brown p-6 sm:p-8 md:p-12">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="bento-card bg-white rounded-[40px] sm:rounded-[54px] border-[3px] border-brand-brown p-6 sm:p-8 md:p-12"
+        >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             <div className="lg:col-span-5 space-y-5">
               <div className="flex gap-2 items-center">
@@ -111,7 +121,7 @@ export default function Payment() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div><label className={labelClass}>Business Name</label><input className={inputClass} value={businessName} onChange={(e) => setBusinessName(e.target.value)} required placeholder="Business name" /></div>
-                <div><label className={labelClass}>Business Email</label><input className={inputClass} type="email" value={businessEmail} onChange={(e) => setBusinessEmail(e.target.value)} required placeholder="contact@example.com" /></div>
+                <div><label className={labelClass}>Business Email</label><input className={inputClass} type="email" value={businessEmail} onChange={(e) => setBusinessEmail(e.target.value)} required placeholder="you@yourbusiness.com" /></div>
               </div>
 
               <div className="bg-brand-yellow rounded-[28px] border-[3px] border-brand-brown p-5">
