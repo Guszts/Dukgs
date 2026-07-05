@@ -144,7 +144,7 @@ export default function Payment() {
               <p className="text-[10px] text-center font-bold text-brand-brown/50 uppercase tracking-tighter">Secure checkout via Stripe • Support: dilgs.online@gmail.com</p>
             </form>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
