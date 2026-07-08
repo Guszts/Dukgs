@@ -13,10 +13,10 @@ const navItems = [
 
 const packageBlocks = [
   {
-    name: "Digital Presence Strategy",
+    name: "High-Ticket Conversion Strategy",
     value: "US$3,000",
-    summary: "Before we design anything, we map the customer journey, page structure, menu hierarchy, conversion paths, trust signals, and local presence gaps through a written audit and onboarding form.",
-    items: ["Current digital presence audit", "Website and mobile structure review", "Menu and offer hierarchy", "Reservation and order path review", "Social proof and local presence analysis", "Page map, CTA planning, and competitor reference review"],
+    summary: "We identify conversion leaks: where high-ticket leads drop off due to friction in booking flows, lack of corporate trust signals, or generic inquiry paths. We map the infrastructure to capture $10k+ event inquiries.",
+    items: ["Conversion leak audit (Drop-off points)", "High-ticket trust signal mapping", "Corporate inquiry path review", "Event venue capacity & booking logic", "Catering lead qualification structure", "Competitor premium positioning review"],
   },
   {
     name: "Premium Website System",
@@ -61,10 +61,10 @@ const packageBlocks = [
     items: ["Google Analytics setup", "Search Console setup", "Form conversion tracking", "Reservation, order, phone, email, and delivery click tracking", "Primary CTA event structure", "Thank-you page and launch tracking checklist"],
   },
   {
-    name: "Basic Automation & Lead Routing",
+    name: "CRM & Corporate Lead Infrastructure",
     value: "US$3,000",
-    summary: "Every inquiry should go somewhere clear. We structure lead routing, notifications, confirmations, and basic follow-up paths.",
-    items: ["Owner or team notifications", "Customer confirmation messages", "Form routing to email, sheet, CRM, or Supabase when used", "Inquiry type organization", "Initial response structure", "Simple follow-up and lead record foundation"],
+    summary: "A website is not enough. We build the CRM infrastructure to ensure corporate leads are never lost and follow-ups are automated for high-value bookings.",
+    items: ["CRM pipeline for corporate events", "Automated follow-ups for event inquiries", "Lost-lead recovery automation", "Corporate booking attribution", "Instant lead routing to sales team", "Centralized database for repeat premium clients"],
   },
   {
     name: "Launch, Testing & Handoff",
@@ -90,10 +90,17 @@ const maintenanceBlocks = [
   ["Monthly Report", "Simple monthly summary", "US$150"],
 ];
 
+const objectionReducers = [
+  ["Just a Website Isn't Enough", "A website alone doesn't capture high-ticket volume. You need CRM infrastructure, lead recovery, and corporate booking pipelines built into the system."],
+];
+
 const trustItems = [
   ["No Calls Required", "The full buying path can happen asynchronously through written audit details, private proposal pages, checkout, onboarding forms, and email."],
   ["Secure Payments", "Payments are processed through Stripe. DILGS does not store full card numbers."],
-  ["Clear Scope", "The $10,000 implementation covers one defined fixed-scope digital presence system."],
+  ["CRM Infrastructure", "We integrate CRM systems to prevent corporate booking loss. Automated follow-ups, lead scoring, and pipeline management ensure no high-ticket inquiry falls through the cracks."],
+  ["Corporate Booking Protection", "Every corporate inquiry is tracked, routed, and followed up automatically. No more lost $10k+ bookings due to manual process failures."],
+  ["Reservation Recovery", "Lost leads trigger automated recovery sequences. If a corporate client doesn't respond to the first inquiry, the system re-engages them with strategic follow-ups."],
+    ["Clear Scope", "The $10,000 implementation covers one defined fixed-scope digital presence system."],
   ["No False Guarantees", "No guaranteed revenue, rankings, reservations, traffic, or customer volume claims."],
   ["Written Policies", "Terms, privacy, cookies, payment, refund, and third-party cost rules are available before checkout."],
   ["Written Buyer Path", "Audit, qualification, proposal, deposit, onboarding, build, review, final payment, launch, and care are handled through written steps."],
@@ -234,10 +241,10 @@ export default function Home() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="lg:col-span-8 space-y-6"
               >
-                <div className="flex gap-3 items-center"><Marker /><span className="text-xs font-mono tracking-widest text-brand-brown/60 uppercase">NO-CALL GASTRONOMY DIGITAL PRESENCE SYSTEM</span></div>
-                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-brand-brown leading-[1.05] tracking-tight font-black">One Complete Digital Presence System Without Sales Calls</h1>
-                <p className="text-brand-brown font-display text-lg sm:text-xl md:text-2xl leading-normal max-w-3xl">The $10,000 implementation gives you the complete system: strategy, premium website, menu structure, reservation and order flow, local presence, reviews, copywriting, tracking, automation, launch support, and 30-day post-launch care.</p>
-                <p className="text-brand-brown/70 text-sm sm:text-base max-w-2xl leading-relaxed">No discovery calls, no mandatory meetings, and no live sales process. The audit, proposal, payment, onboarding, material collection, review, and handoff can be handled through forms, email, and private pages.</p>
+                <div className="flex gap-3 items-center"><Marker /><span className="text-xs font-mono tracking-widest text-brand-brown/60 uppercase">DIGITAL INFRASTRUCTURE FOR HIGH-TICKET HOSPITALITY</span></div>
+                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-brand-brown leading-[1.05] tracking-tight font-black">Digital Infrastructure for High-Ticket Hospitality</h1>
+                <p className="text-brand-brown font-display text-lg sm:text-xl md:text-2xl leading-normal max-w-3xl">Specialized digital systems for Catering, Event Venues, and Premium Dining establishments. The $10,000 implementation builds the infrastructure to capture high-ticket volume.</p>
+                <p className="text-brand-brown/70 text-sm sm:text-base max-w-2xl leading-relaxed">Built for high-ticket hospitality: no discovery calls required. We handle the technical infrastructure, CRM integration, and conversion paths for corporate and premium event bookings.</p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <a href="#value-stack" className="bubble-btn bg-white hover:bg-cream-dark text-brand-brown px-7 py-4 rounded-full font-display font-black uppercase tracking-wider text-xs sm:text-sm text-center">View Value Stack</a>
                 </div>
@@ -268,10 +275,10 @@ export default function Home() {
 
         <Shell id="offer" cream>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7"><SectionTitle eyebrow="OFFER" title="Gastronomy Digital Presence System" text="Instead of hiring separate specialists for website design, copywriting, tracking, local presence, menu structure, and launch support, DILGS delivers the full system under one fixed implementation. The process is designed to be completed without mandatory calls." /></div>
+            <div className="lg:col-span-7"><SectionTitle eyebrow="OFFER" title="High-Ticket Digital Infrastructure" text="Instead of hiring separate specialists, DILGS builds the complete digital infrastructure for Catering, Event Venues, and Premium Dining. We focus on capturing high-ticket volume and corporate bookings without requiring discovery calls." /></div>
             <div className="lg:col-span-5 bg-white rounded-[32px] border-[3px] border-brand-brown p-6 shadow-[6px_6px_0px_rgba(45,30,24,1)]">
               <div className="grid gap-4">
-                <div><p className="text-xs font-mono uppercase tracking-widest text-brand-orange font-black">Product</p><p className="font-display text-2xl font-black uppercase">Gastronomy Digital Presence System</p></div>
+                <div><p className="text-xs font-mono uppercase tracking-widest text-brand-orange font-black">Product</p><p className="font-display text-2xl font-black uppercase">High-Ticket Digital Infrastructure</p></div>
                 <div><p className="text-xs font-mono uppercase tracking-widest text-brand-orange font-black">Price</p><p className="font-display text-4xl font-black">US$10,000</p></div>
                 <div><p className="text-xs font-mono uppercase tracking-widest text-brand-orange font-black">Payment</p><p className="font-bold">US$5,000 upfront. US$5,000 before launch.</p></div>
                 <div><p className="text-xs font-mono uppercase tracking-widest text-brand-orange font-black">Communication</p><p className="font-bold">Async forms, email, private proposal pages, and written approvals.</p></div>
@@ -337,6 +344,19 @@ export default function Home() {
           <div className="flex flex-wrap gap-3 mt-8"><Link href="/scope" className="bubble-btn bg-brand-orange text-white px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Scope</Link><Link href="/terms" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Terms</Link><Link href="/privacy" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Privacy</Link><Link href="/cookies" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Cookies</Link><Link href="/refunds" className="bubble-btn bg-white text-brand-brown px-5 py-2.5 rounded-full font-display text-xs uppercase tracking-wider font-black">Refunds</Link></div>
         </Shell>
 
+        <Shell id="objections" cream>
+          <SectionTitle eyebrow="COMMON OBJECTION" title="Why a Website Alone Isn't Enough" text="High-ticket hospitality requires more than a beautiful website. It requires infrastructure to capture, track, and convert corporate bookings." />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">{objectionReducers.map(([title, text]) => <Card key={title} title={title} text={text} />)}</div>
+          <div className="mt-10 p-6 bg-white rounded-[28px] border-[3px] border-brand-brown">
+            <h3 className="font-display text-lg uppercase text-brand-brown font-black mb-4">What We Build Instead</h3>
+            <ul className="space-y-3 text-sm text-brand-brown/80 font-semibold">
+              <li className="flex gap-3"><span className="text-brand-orange font-black">→</span> <span>CRM infrastructure that routes every corporate inquiry to your sales team instantly</span></li>
+              <li className="flex gap-3"><span className="text-brand-orange font-black">→</span> <span>Automated follow-up sequences that re-engage lost leads with strategic timing</span></li>
+              <li className="flex gap-3"><span className="text-brand-orange font-black">→</span> <span>Centralized booking database so no $10k+ event inquiry ever falls through the cracks</span></li>
+            </ul>
+          </div>
+        </Shell>
+
 
       </main>
 
@@ -356,7 +376,7 @@ export default function Home() {
             >
               Dilgs<span className="text-brand-orange">.</span>
             </motion.p>
-            <p className="mt-2 text-sm text-brand-brown/65 font-semibold max-w-md">Premium digital presence systems for gastronomy businesses in the United States. No calls required.</p>
+            <p className="mt-2 text-sm text-brand-brown/65 font-semibold max-w-md">Digital infrastructure for High-Ticket Hospitality. Specialized in Catering, Event Venues, and Premium Dining. No calls required.</p>
             <p className="mt-3 text-xs text-brand-brown/55 font-bold">Payments processed securely by Stripe. Full card numbers are not stored by DILGS.</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-6 gap-4 text-xs font-display uppercase tracking-wider font-black"><Link href="/scope">Scope</Link><Link href="/onboarding/new">Onboarding</Link><Link href="/terms">Terms</Link><Link href="/privacy">Privacy</Link><Link href="/cookies">Cookies</Link><Link href="/refunds">Refunds</Link></div>
